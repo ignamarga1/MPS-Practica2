@@ -79,19 +79,16 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public T first() {
-        // TODO
         return this.first.getItem();
     }
 
     @Override
     public T last() {
-        // TODO
         return this.last.getItem();
     }
 
     @Override
     public int size() {
-        // TODO
         return size;
     }
 }
