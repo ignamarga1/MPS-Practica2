@@ -33,7 +33,7 @@ class DequeNodeTest {
     }
 
     @Test
-    void shouldReturnTheSetItem() {
+    void theComputedMethodShouldReturnTheSetItem() {
 
     }
 }
