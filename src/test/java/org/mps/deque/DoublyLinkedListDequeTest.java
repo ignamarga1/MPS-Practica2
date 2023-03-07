@@ -1,5 +1,6 @@
 package org.mps.deque;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -91,6 +92,73 @@ class DoublyLinkedListDequeTest {
         deque.prepend(item1);
         deque.prepend(item2);
         assertEquals(item2, deque.first());
+    }
+
+    @Test
+    void appendingNodeInDequeIsLast(){
+        int item1 = 1;
+        int item2 = 2;
+        deque.append(item1);
+        deque.append(item2);
+        assertEquals(item2, deque.last());
+    }
+
+    @Test
+    void prependingANodeIncreasesSizeBy1(){
+        int item1 = 1;
+        int item2 = 2;
+        deque.prepend(item1);
+
+        int prevSize = deque.size();
+
+        deque.prepend(item2);
+        assertEquals(prevSize + 1, deque.size());
+    }
+
+    @Test
+    void appendingANodeIncreasesSizeBy1(){
+        int item1 = 1;
+        int item2 = 2;
+        deque.append(item1);
+
+        int prevSize = deque.size();
+
+        deque.append(item2);
+        assertEquals(prevSize + 1, deque.size());
+    }
+
+    @Test
+    void deletingFirstNodeFromEmptyDequeThrowsDoubleEndedQueueException(){
+        assertThrows(DoubleEndedQueueException.class, () -> deque.deleteFirst());
+    }
+
+    @Test
+    void deletingLastNodeFromEmptyDequeThrowsDoubleEndedQueueException(){
+        assertThrows(DoubleEndedQueueException.class, () -> deque.deleteLast());
+    }
+
+    @Test
+    void deletingFirstNodeDecreaseSizeBy1(){
+        int item1 = 1;
+        int item2 = 2;
+        deque.append(item1);
+
+        int prevSize = deque.size();
+
+        deque.deleteFirst();
+        assertEquals(prevSize - 1, deque.size());
+    }
+
+    @Test
+    void deletingLastNodeFromDequeDecreaseSizeBy1(){
+        int item1 = 1;
+        int item2 = 2;
+        deque.append(item1);
+
+        int prevSize = deque.size();
+
+        deque.deleteLast();
+        assertEquals(prevSize - 1, deque.size());
     }
 
 }
