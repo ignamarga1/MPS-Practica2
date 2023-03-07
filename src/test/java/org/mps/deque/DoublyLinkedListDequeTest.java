@@ -3,8 +3,13 @@ package org.mps.deque;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Class for testing DoublyLinkedListDequeTest.java
+ *
+ * @author Pablo Sánchez González
+ */
 
 class DoublyLinkedListDequeTest {
 
@@ -17,12 +22,12 @@ class DoublyLinkedListDequeTest {
 
     @Test
     void newDequeFirstIsNull(){
-        assertEquals(null, deque.first());
+        assertNull(deque.first());
     }
 
     @Test
     void newDequeLastIsNull(){
-        assertEquals(null, deque.last());
+        assertNull(deque.last());
     }
 
     @Test
