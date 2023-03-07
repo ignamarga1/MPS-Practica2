@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Class for testing DequeNode.java
  *
- * @author Ignacio Martínez Gallardo
+ * @author Ignacio Martínez +
  */
 
 class DequeNodeTest {
