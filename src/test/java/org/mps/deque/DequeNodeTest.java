@@ -18,62 +18,84 @@ class DequeNodeTest {
     class TestCasesForInitialNodeOfTheDeque {
         @BeforeEach
         void setup() {
-            node = new DequeNode<>(1, null, null);
+            previousNode = new DequeNode<>(1,null,null);
+            node = new DequeNode<>(2, null, null);
+            nextNode = new DequeNode<>(3, null, null);
+
+            previousNode.setNext(node);
+            nextNode.setPrevious(node);
+            node.setPrevious(previousNode);
+            node.setNext(nextNode);
         }
 
         @AfterEach
         void shutdown() {
+            previousNode = null;
+            nextNode = null;
             node = null;
         }
 
         @Test
         void shouldReturnTheNodeItem() {
             int expectedValue = 1;
-            int actualValue = node.getItem();
+            int actualValue = previousNode.getItem();
 
             assertEquals(expectedValue, actualValue);
         }
 
         @Test
-        void shouldSetTheNodeItemTo2() {
-            node.setItem(2);
-            assertEquals(2, node.getItem());
+        void shouldSetTheNodeItemTo6() {
+            previousNode.setItem(6);
+            int expectedValue = 6;
+            int actualValue = previousNode.getItem();
+
+            assertEquals(expectedValue, actualValue);
         }
 
         @Test
         void shouldReturnThePreviousNode() {
-            assertNull(node.getPrevious());
+            assertNull(previousNode.getPrevious());
         }
 
         @Test
         void shouldReturnTheNextNode() {
-            assertNull(node.getNext());
+            DequeNode<Integer> expectedValue = node;
+            DequeNode<Integer> actualValue = previousNode.getNext();
+
+            assertEquals(expectedValue, actualValue);
         }
 
-        @Test
-        void shouldReturnTrueToNodeBeingTheFirstNodeOfTheDequeue() {
-            assertTrue(node.isFirstNode());
-        }
 
         @Test
-        void shouldReturnTrueToNodeBeingTheLastNodeOfTheDequeue() {
-            assertTrue(node.isLastNode());
+        void shouldReturnTrueToNodeBeingTheFirstNodeOfTheDeque() {
+            assertTrue(previousNode.isFirstNode());
+        }
+
+
+        @Test
+        void shouldReturnFalseToNodeBeingTheLastNodeOfTheDeque() {
+            assertFalse(previousNode.isLastNode());
         }
 
         @Test
         void shouldReturnFalseToNodeNotBeingATerminalNode() {
-            assertFalse(node.isNotATerminalNode());
+            assertFalse(previousNode.isNotATerminalNode());
         }
     }
 
     @Nested
     @DisplayName("Instanciamos un nodo como uno intermedio de la Deque")
-    class TestCasesForNodeOfTheDeque {
+    class TestCasesForANodeOfTheDeque {
         @BeforeEach
         void setup() {
-            previousNode = new DequeNode<>(1,null,null);
-            nextNode = new DequeNode<>(3, node, null);
-            node = new DequeNode<>(2, previousNode, nextNode);
+            previousNode = new DequeNode<>(4,null,null);
+            node = new DequeNode<>(5, null, null);
+            nextNode = new DequeNode<>(6, null, null);
+
+            previousNode.setNext(node);
+            nextNode.setPrevious(node);
+            node.setPrevious(previousNode);
+            node.setNext(nextNode);
         }
 
         @AfterEach
@@ -85,35 +107,44 @@ class DequeNodeTest {
 
         @Test
         void shouldReturnTheNodeItem() {
-            int expectedValue = 2;
+            int expectedValue = 5;
             int actualValue = node.getItem();
 
             assertEquals(expectedValue, actualValue);
         }
 
         @Test
-        void shouldSetTheNodeItemTo5() {
-            node.setItem(5);
-            assertEquals(5, node.getItem());
+        void shouldSetTheNodeItemTo10() {
+            node.setItem(10);
+            int expectedValue = 10;
+            int actualValue = node.getItem();
+
+            assertEquals(expectedValue, actualValue);
         }
 
         @Test
         void shouldReturnThePreviousNode() {
-            assertEquals(previousNode, node.getPrevious());
+            DequeNode<Integer> expectedValue = previousNode;
+            DequeNode<Integer> actualValue = node.getPrevious();
+
+            assertEquals(expectedValue, actualValue);
         }
 
         @Test
         void shouldReturnTheNextNode() {
-            assertEquals(nextNode, node.getNext());
+            DequeNode<Integer> expectedValue = nextNode;
+            DequeNode<Integer> actualValue = node.getNext();
+
+            assertEquals(expectedValue, actualValue);
         }
 
         @Test
-        void shouldReturnFalseToNodeBeingTheFirstNodeOfTheDequeue() {
+        void shouldReturnFalseToNodeBeingTheFirstNodeOfTheDeque() {
             assertFalse(node.isFirstNode());
         }
 
         @Test
-        void shouldReturnFalseToNodeBeingTheLastNodeOfTheDequeue() {
+        void shouldReturnFalseToNodeBeingTheLastNodeOfTheDeque() {
             assertFalse(node.isLastNode());
         }
 
@@ -127,7 +158,7 @@ class DequeNodeTest {
     class TestCasesForLastNodeOfTheDeque {
         @BeforeEach
         void setup() {
-            previousNode = new DequeNode<>(6,null,null);
+            previousNode = new DequeNode<>(6,null,node);
             nextNode = new DequeNode<>(8, node, null);
             node = new DequeNode<>(7, previousNode, nextNode);
         }
