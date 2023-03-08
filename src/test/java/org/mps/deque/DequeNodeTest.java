@@ -10,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Ignacio Martínez Gallardo
  */
 
+@DisplayName("Un nodo")
 class DequeNodeTest {
     DequeNode<Integer> node, previousNode, nextNode;
 
     @Nested
-    @DisplayName("Instanciamos un nodo que como el primero de la Deque")
+    @DisplayName("se instancia como el primero de la Deque")
     class TestCasesForInitialNodeOfTheDeque {
         @BeforeEach
         void setup() {
@@ -36,6 +37,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su valor devuelve 1")
         void shouldReturnTheNodeItem() {
             int expectedValue = 1;
             int actualValue = previousNode.getItem();
@@ -44,6 +46,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si cambiamos su valor a 6 se cambia correctamente")
         void shouldSetTheNodeItemTo6() {
             previousNode.setItem(6);
             int expectedValue = 6;
@@ -53,11 +56,13 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su nodo anterior devuelve null")
         void shouldReturnThePreviousNode() {
             assertNull(previousNode.getPrevious());
         }
 
         @Test
+        @DisplayName("si pedimos su nodo posterior devuelve dicho nodo")
         void shouldReturnTheNextNode() {
             DequeNode<Integer> expectedValue = node;
             DequeNode<Integer> actualValue = previousNode.getNext();
@@ -65,19 +70,20 @@ class DequeNodeTest {
             assertEquals(expectedValue, actualValue);
         }
 
-
         @Test
+        @DisplayName("si comprobamos que es el primero devuelve true")
         void shouldReturnTrueToNodeBeingTheFirstNodeOfTheDeque() {
             assertTrue(previousNode.isFirstNode());
         }
 
-
         @Test
+        @DisplayName("si comprobamos que es el último devuelve false")
         void shouldReturnFalseToNodeBeingTheLastNodeOfTheDeque() {
             assertFalse(previousNode.isLastNode());
         }
 
         @Test
+        @DisplayName("si comprobamos que es uno intermedio devuelve false")
         void shouldReturnFalseToNodeNotBeingATerminalNode() {
             assertFalse(previousNode.isNotATerminalNode());
         }
@@ -158,9 +164,14 @@ class DequeNodeTest {
     class TestCasesForLastNodeOfTheDeque {
         @BeforeEach
         void setup() {
-            previousNode = new DequeNode<>(6,null,node);
-            nextNode = new DequeNode<>(8, node, null);
-            node = new DequeNode<>(7, previousNode, nextNode);
+            previousNode = new DequeNode<>(7,null,null);
+            node = new DequeNode<>(8, null, null);
+            nextNode = new DequeNode<>(9, null, null);
+
+            previousNode.setNext(node);
+            nextNode.setPrevious(node);
+            node.setPrevious(previousNode);
+            node.setNext(nextNode);
         }
 
         @AfterEach
@@ -172,7 +183,7 @@ class DequeNodeTest {
 
         @Test
         void shouldReturnTheNodeItem() {
-            int expectedValue = 8;
+            int expectedValue = 9;
             int actualValue = nextNode.getItem();
 
             assertEquals(expectedValue, actualValue);
@@ -180,14 +191,13 @@ class DequeNodeTest {
 
         @Test
         void shouldSetTheNodeItemTo1() {
-            node.setItem(1);
+            nextNode.setItem(1);
             int expectedValue = 1;
             int actualValue = nextNode.getItem();
 
             assertEquals(expectedValue, actualValue);
         }
 
-        /*
         @Test
         void shouldReturnThePreviousNode() {
             DequeNode<Integer> expectedValue = node;
@@ -195,7 +205,6 @@ class DequeNodeTest {
 
             assertEquals(expectedValue, actualValue);
         }
-        */
 
         @Test
         void shouldReturnNullAsTheNextNode() {
@@ -203,12 +212,12 @@ class DequeNodeTest {
         }
 
         @Test
-        void shouldReturnTrueToNodeBeingTheFirstNodeOfTheDequeue() {
-            assertTrue(nextNode.isFirstNode());
+        void shouldReturnFalseToNodeBeingTheFirstNodeOfTheDeque() {
+            assertFalse(nextNode.isFirstNode());
         }
 
         @Test
-        void shouldReturnTrueToNodeBeingTheLastNodeOfTheDequeue() {
+        void shouldReturnTrueToNodeBeingTheLastNodeOfTheDeque() {
             assertTrue(nextNode.isLastNode());
         }
 
