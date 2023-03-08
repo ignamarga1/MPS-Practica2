@@ -2,6 +2,11 @@ package org.mps.deque;
 
 import java.util.Deque;
 
+/**
+ * Class for testing DoublyLinkedListDequeTest.java
+ *
+ * @author Pablo Sánchez González
+ */
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     private DequeNode<T> first;
