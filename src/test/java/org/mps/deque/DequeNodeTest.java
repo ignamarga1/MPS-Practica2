@@ -90,7 +90,7 @@ class DequeNodeTest {
     }
 
     @Nested
-    @DisplayName("Instanciamos un nodo como uno intermedio de la Deque")
+    @DisplayName("se instancia como uno intermedio de la Deque")
     class TestCasesForANodeOfTheDeque {
         @BeforeEach
         void setup() {
@@ -131,6 +131,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su nodo anterior devuelve dicho nodo")
         void shouldReturnPreviousNodeAsThePreviousNode() {
             DequeNode<Integer> expectedValue = previousNode;
             DequeNode<Integer> actualValue = node.getPrevious();
@@ -139,6 +140,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su nodo posterior devuelve dicho nodo")
         void shouldReturnNextNodeAsTheNextNode() {
             DequeNode<Integer> expectedValue = nextNode;
             DequeNode<Integer> actualValue = node.getNext();
@@ -147,22 +149,25 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si comprobamos que es el primero devuelve false")
         void shouldReturnFalseToNodeBeingTheFirstNodeOfTheDeque() {
             assertFalse(node.isFirstNode());
         }
 
         @Test
+        @DisplayName("si comprobamos que es el último devuelve false")
         void shouldReturnFalseToNodeBeingTheLastNodeOfTheDeque() {
             assertFalse(node.isLastNode());
         }
 
         @Test
+        @DisplayName("si comprobamos que es uno intermedio devuelve true")
         void shouldReturnTrueToNodeNotBeingATerminalNode() {
             assertTrue(node.isNotATerminalNode());
         }
     }
     @Nested
-    @DisplayName("Instanciamos un nodo como el último de la Deque")
+    @DisplayName("se instancia como el último de la Deque")
     class TestCasesForLastNodeOfTheDeque {
         @BeforeEach
         void setup() {
@@ -184,6 +189,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su valor devuelve 9")
         void shouldReturn9AsTheNextNodeItem() {
             int expectedValue = 9;
             int actualValue = nextNode.getItem();
@@ -192,6 +198,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si cambiamos su valor a 1 se actualiza correctamente")
         void shouldSetTheNextNodeItemTo1() {
             nextNode.setItem(1);
             int expectedValue = 1;
@@ -201,6 +208,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su nodo anterior devuelve dicho nodo")
         void shouldReturnNodeAsThePreviousNode() {
             DequeNode<Integer> expectedValue = node;
             DequeNode<Integer> actualValue = nextNode.getPrevious();
@@ -209,21 +217,25 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su nodo posterior devuelve null")
         void shouldReturnNullAsTheNextNode() {
             assertNull(nextNode.getNext());
         }
 
         @Test
+        @DisplayName("si comprobamos que es el primero devuelve false")
         void shouldReturnFalseToNextNodeBeingTheFirstNodeOfTheDeque() {
             assertFalse(nextNode.isFirstNode());
         }
 
         @Test
+        @DisplayName("si comprobamos que es el último devuelve true")
         void shouldReturnTrueToNextNodeBeingTheLastNodeOfTheDeque() {
             assertTrue(nextNode.isLastNode());
         }
 
         @Test
+        @DisplayName("si comprobamos que es uno intermedio devuelve false")
         void shouldReturnFalseToNextNodeNotBeingATerminalNode() {
             assertFalse(nextNode.isNotATerminalNode());
         }
