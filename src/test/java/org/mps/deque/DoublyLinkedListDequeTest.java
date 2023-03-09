@@ -119,14 +119,13 @@ class DoublyLinkedListDequeTest {
     @DisplayName("Casos de prueba de añadir un nodo al final")
     class appendingNewNodes{
 
-        @BeforeEach
-        void createDeque(){
-            deque = new DoublyLinkedListDeque<>();
-        }
-
         @Nested
         @DisplayName("En un deque vacío")
         class EmptyDeque{
+            @BeforeEach
+            void createDeque(){
+                deque = new DoublyLinkedListDeque<>();
+            }
             @DisplayName("El nodo añadido es el último")
             @Test
             void appendingNodeInEmptyDequeIsLastNode(){
@@ -157,6 +156,12 @@ class DoublyLinkedListDequeTest {
         @Nested
         @DisplayName("En un deque no vacío")
         class NonEmptyDeque{
+
+            @BeforeEach
+            void createDeque(){
+                deque = new DoublyLinkedListDeque<>();
+            }
+
             @DisplayName("El nodo añadido es el último")
             @Test
             void appendingNodeInDequeIsLast(){
@@ -217,6 +222,11 @@ class DoublyLinkedListDequeTest {
     @DisplayName("Casos de prueba de eliminar el último nodo")
     class DeleteLast{
 
+        @BeforeEach
+        void createDeque(){
+            deque = new DoublyLinkedListDeque<>();
+        }
+
         @DisplayName("En un deque vacío, salta una DoubleEndedQueueException")
         @Test
         void deletingLastNodeFromEmptyDequeThrowsDoubleEndedQueueException(){
@@ -240,6 +250,11 @@ class DoublyLinkedListDequeTest {
     @Nested
     @DisplayName("Propiedades")
     class Properties{
+
+        @BeforeEach
+        void createDeque(){
+            deque = new DoublyLinkedListDeque<>();
+        }
 
         @DisplayName("En un deque de tamaño 1, el primer y último nodo es el mismo")
         @Test
