@@ -16,6 +16,10 @@ class DoublyLinkedListDequeTest {
 
     DoubleEndedQueue<Integer> deque;
 
+    private boolean isEmpty(DoubleEndedQueue d){
+        return d.first() == null && d.last() == null;
+    }
+
     @Nested
     @DisplayName("Casos de prueba de un deque recién creado")
     class NewDeque{
@@ -202,12 +206,23 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, () -> deque.deleteFirst());
         }
 
+        @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
+        @Test
+        void deletingFirstNodeFromSize1DequeResultsInEmptyDeque(){
+            int item = 1;
+            deque.append(1);
+
+            deque.deleteFirst();
+            assertTrue(isEmpty(deque));
+        }
+
         @DisplayName("En un deque no vacío, se decrementa el tamaño en 1")
         @Test
         void deletingFirstNodeDecreaseSizeBy1(){
             int item1 = 1;
             int item2 = 2;
             deque.append(item1);
+            deque.append(item2);
 
             int prevSize = deque.size();
 
@@ -233,12 +248,23 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, () -> deque.deleteLast());
         }
 
+        @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
+        @Test
+        void deletingLastNodeFromSize1DequeResultsInEmptyDeque(){
+            int item = 1;
+            deque.append(1);
+
+            deque.deleteLast();
+            assertTrue(isEmpty(deque));
+        }
+
         @DisplayName("En un deque no vacío, se decrementa el tamaño en 1")
         @Test
         void deletingLastNodeFromDequeDecreaseSizeBy1(){
             int item1 = 1;
             int item2 = 2;
             deque.append(item1);
+            deque.append(item2);
 
             int prevSize = deque.size();
 

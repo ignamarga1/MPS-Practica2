@@ -24,9 +24,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         if(size == 0){
             this.first = new DequeNode<>(value, null, null);
             this.last = this.first;
-        } else if (size == 1){
-            this.first = new DequeNode<>(value, null, this.last);
-            this.last.setPrevious(this.first);
         } else {
             DequeNode<T> newNode = new DequeNode<>(value, null, this.first);
             this.first.setPrevious(newNode);
@@ -41,9 +38,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         if(size == 0){
             this.first = new DequeNode<>(value, null, null);
             this.last = this.first;
-        } else if (size == 1){
-            this.last = new DequeNode<>(value, this.first, null);
-            this.first.setNext(this.last);
         } else {
             DequeNode<T> newNode = new DequeNode<>(value, this.last, null);
             this.last.setNext(newNode);
