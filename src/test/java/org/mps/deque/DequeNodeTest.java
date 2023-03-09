@@ -46,7 +46,7 @@ class DequeNodeTest {
         }
 
         @Test
-        @DisplayName("si cambiamos su valor a 6 se cambia correctamente")
+        @DisplayName("si cambiamos su valor a 6 se actualiza correctamente")
         void shouldSetThePreviousNodeItemTo6() {
             previousNode.setItem(6);
             int expectedValue = 6;
@@ -112,6 +112,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si pedimos su valor devuelve 5")
         void shouldReturn5AsTheNodeItem() {
             int expectedValue = 5;
             int actualValue = node.getItem();
@@ -120,6 +121,7 @@ class DequeNodeTest {
         }
 
         @Test
+        @DisplayName("si cambiamos su valor a 10 se actualiza correctamente")
         void shouldSetTheNodeItemTo10() {
             node.setItem(10);
             int expectedValue = 10;
