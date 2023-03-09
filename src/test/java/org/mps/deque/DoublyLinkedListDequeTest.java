@@ -2,7 +2,9 @@ package org.mps.deque;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,19 +14,28 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Pablo Sánchez González
  */
 
+@DisplayName("Un Deque")
 class DoublyLinkedListDequeTest {
 
+
     DoubleEndedQueue<Integer> deque;
+
+    @Nested
+    @DisplayName("Clase 1")
+    class Clase1{
+        @Test
+        void newDequeFirstIsNull(){
+            assertNull(deque.first());
+        }
+    }
+
 
     @BeforeEach
     void createDeque(){
         deque = new DoublyLinkedListDeque<>();
     }
 
-    @Test
-    void newDequeFirstIsNull(){
-        assertNull(deque.first());
-    }
+
 
     @Test
     void newDequeLastIsNull(){
