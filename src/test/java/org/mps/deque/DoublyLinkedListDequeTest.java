@@ -10,6 +10,31 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Pablo Sánchez González
  */
 
+/**
+ *
+ * 1. Comprueba que, al crear un nuevo deque, su primer elemento es nulo
+ * 2. Comprueba que, al crear un nuevo deque, su último elemento es nulo
+ * 3. Comprueba que, al crear un nuevo deque, su tamaño es 0
+ * 4. Comprueba que, al insertar un nodo al principio de un deque vacío, el nuevo nodo es el primero
+ * 5. Comprueba que, al insertar un nodo al principio de un deque vacío, el nuevo nodo es también el último
+ * 6. Comprueba que, al insertar un nodo al principio de un deque vacío, el tamaño del deque es 1
+ * 7. Comprueba que, al insertar un nodo al principio de un deque no vacío, el nuevo nodo es el primero
+ * 8. Comprueba que, al insertar un nodo al principio de un deque no vacío, el tamaño del deque se incrementa en 1
+ * 9. Comprueba que, al insertar un nodo al final de un deque vacío, el nuevo nodo es el último
+ * 10. Comprueba que, al insertar un nodo al final de un deque vacío, el nuevo nodo es también el primero
+ * 11. Comprueba que, al insertar un nodo al final de un deque vacío, el tamaño del deque es 1
+ * 12. Comprueba que, al insertar un nodo al final de un deque no vacío, el nodo añadido es el último
+ * 13. Comprueba que, al insertar un nodo al final de un deque no vacío, el tamaño del deque se incrementa en 1
+ * 14. Comprueba que, al intentar borrar el primer elemento de un deque vacío, se lanza una excepción de tipo DoubleEndedQUeueException
+ * 15. Comprueba que, al borrar el primer elemento de un deque de tamaño 1, el deque queda vacío
+ * 16. Comprueba que, al borrar el primer elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
+ * 17. Comprueba que, al intentar borrar el último elemento de un deque vacío, se lanza una excepción de tipo DoubleEndedQUeueException
+ * 18. Comprueba que, al borrar el último elemento de un deque de tamaño 1, el deque queda vacío
+ * 19. Comprueba que, al borrar el último elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
+ * 20. Comprueba que, si un deque tiene tamaño 1, su primer y último elemento son iguales
+ *
+ */
+
 @DisplayName("Un Deque")
 class DoublyLinkedListDequeTest {
 
