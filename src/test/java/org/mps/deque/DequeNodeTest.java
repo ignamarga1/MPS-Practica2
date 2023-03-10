@@ -187,7 +187,7 @@ class DequeNodeTest {
         }
 
         @Test
-        @DisplayName("si comprobamos que es uno intermedio devuelve true")
+        @DisplayName("si comprobamos que no es uno terminal devuelve true")
         void shouldReturnTrueToNodeNotBeingATerminalNode() {
             assertTrue(node.isNotATerminalNode());
         }
@@ -261,7 +261,7 @@ class DequeNodeTest {
         }
 
         @Test
-        @DisplayName("si comprobamos que es uno intermedio devuelve false")
+        @DisplayName("si comprobamos que no es uno terminal devuelve false")
         void shouldReturnFalseToNextNodeNotBeingATerminalNode() {
             assertFalse(nextNode.isNotATerminalNode());
         }
