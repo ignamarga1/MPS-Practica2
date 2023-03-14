@@ -133,6 +133,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public void remove(T value) {
         DequeNode<T> node = getNodeByValue(value);
+        // Falta añadir cuando size es 1 y si está vacía
         if(node.isFirstNode()) {
             this.first.setNext(this.first.getNext());
             this.first.setPrevious(null);
@@ -143,6 +144,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
             node.getPrevious().setNext(node.getNext());
             node.getNext().setPrevious(node.getPrevious());
         }
+        size--;
     }
 
     private void swap(DequeNode<T> node1, DequeNode<T> node2) {
