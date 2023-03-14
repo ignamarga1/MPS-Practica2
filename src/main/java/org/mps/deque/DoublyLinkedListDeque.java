@@ -139,6 +139,9 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         } else if(node.isLastNode()) {
             this.last.setNext(null);
             this.last.setNext(this.last.getPrevious());
+        } else {
+            node.getPrevious().setNext(node.getNext());
+            node.getNext().setPrevious(node.getPrevious());
         }
     }
 
