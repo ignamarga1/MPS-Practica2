@@ -1,7 +1,6 @@
 package org.mps.deque;
 
 import java.util.Comparator;
-import java.util.Deque;
 
 /**
  * Class for testing DoublyLinkedListDequeTest.java
@@ -136,10 +135,42 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     }
 
+    private void swap(DequeNode<T> node1, DequeNode<T> node2) {
+
+        DequeNode<T> aux = node2;
+        node2 = node1;
+        node1 = aux;
+
+        node2.setNext(node1);
+        node1.setPrevious(node2);
+
+    }
+
+
     @Override
     public void sort(Comparator<? super T> comparator) {
 
+        int i = 0;
+        boolean swapped = false;
+        // Iteramos sobre todos los elementos de la lista
+        while (i < this.size && swapped) {
+            // Creamos una variable para indicar si hubo intercambios en esta iteración
+            DequeNode<T> node = this.first;
+            // Iteramos sobre los elementos restantes de la lista
+            for (int j = 0; j < this.size-i-1; j++) {
+                // Si el elemento actual es mayor que el siguiente, los intercambiamos
 
+                if (comparator.compare(node.getItem(), node.getNext().getItem()) > 0) {
+                    swap(node, node.getNext());
+                    swapped = true;
+                }
+
+                node = node.getNext();
+            }
+            i++;
+
+        }
 
     }
 }
+
