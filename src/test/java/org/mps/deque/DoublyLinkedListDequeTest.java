@@ -327,30 +327,6 @@ class DoublyLinkedListDequeTest {
             deque = new DoublyLinkedListDeque<>();
         }
 
-
-        @Test
-        void testTest(){
-
-            deque.append(8);
-            deque.append(7);
-            deque.append(6);
-            deque.append(5);
-            deque.append(4);
-            deque.append(3);
-            deque.append(2);
-            deque.append(1);
-
-            deque.sort(new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return o1 - o2;
-                }
-            });
-
-            assertEquals (1, deque.first());
-
-        }
-
     }
 
 }
