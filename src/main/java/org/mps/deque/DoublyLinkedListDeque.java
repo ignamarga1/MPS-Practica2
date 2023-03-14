@@ -132,7 +132,14 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void remove(T value) {
-
+        DequeNode<T> node = getNodeByValue(value);
+        if(node.isFirstNode()) {
+            this.first.setNext(this.first.getNext());
+            this.first.setPrevious(null);
+        } else if(node.isLastNode()) {
+            this.last.setNext(null);
+            this.last.setNext(this.last.getPrevious());
+        }
     }
 
     private void swap(DequeNode<T> node1, DequeNode<T> node2) {
@@ -146,7 +153,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void sort(Comparator<? super T> comparator) {
-
         int i = 0;
         boolean swapped = true;
         // Iteramos sobre todos los elementos de la lista
@@ -168,7 +174,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
             i++;
 
         }
-
     }
 }
 
