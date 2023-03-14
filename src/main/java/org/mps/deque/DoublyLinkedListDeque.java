@@ -82,7 +82,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         if(this.first == null){
             return null;
         } else
-        return this.first.getItem();
+            return this.first.getItem();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         if(this.last == null){
             return null;
         } else
-        return this.last.getItem();
+            return this.last.getItem();
     }
 
     @Override
