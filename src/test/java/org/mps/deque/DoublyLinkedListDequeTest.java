@@ -2,6 +2,8 @@ package org.mps.deque;
 
 import org.junit.jupiter.api.*;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -314,6 +316,41 @@ class DoublyLinkedListDequeTest {
             deque.prepend(item);
             assertEquals (deque.first(), deque.last());
         }
+    }
+
+    @Nested
+    @DisplayName("Ordenar un deque")
+    class Sort{
+
+        @BeforeEach
+        void createDeque(){
+            deque = new DoublyLinkedListDeque<>();
+        }
+
+
+        @Test
+        void testTest(){
+
+            deque.append(8);
+            deque.append(7);
+            deque.append(6);
+            deque.append(5);
+            deque.append(4);
+            deque.append(3);
+            deque.append(2);
+            deque.append(1);
+
+            deque.sort(new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return o1 - o2;
+                }
+            });
+
+            assertEquals (1, deque.first());
+
+        }
+
     }
 
 }

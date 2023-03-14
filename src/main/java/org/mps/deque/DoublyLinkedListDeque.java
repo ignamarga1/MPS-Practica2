@@ -137,12 +137,9 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     private void swap(DequeNode<T> node1, DequeNode<T> node2) {
 
-        DequeNode<T> aux = node2;
-        node2 = node1;
-        node1 = aux;
-
-        node2.setNext(node1);
-        node1.setPrevious(node2);
+        T aux = node1.getItem();
+        node1.setItem(node2.getItem());
+        node2.setItem(aux);
 
     }
 
@@ -151,9 +148,10 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     public void sort(Comparator<? super T> comparator) {
 
         int i = 0;
-        boolean swapped = false;
+        boolean swapped = true;
         // Iteramos sobre todos los elementos de la lista
         while (i < this.size && swapped) {
+            swapped = false;
             // Creamos una variable para indicar si hubo intercambios en esta iteración
             DequeNode<T> node = this.first;
             // Iteramos sobre los elementos restantes de la lista
