@@ -1,6 +1,8 @@
 package org.mps.deque;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Comparator;
 
@@ -318,13 +320,92 @@ class DoublyLinkedListDequeTest {
         }
     }
 
+
     @Nested
     @DisplayName("Ordenar un deque")
     class Sort{
 
+        int[] sortedDequeValues;
+        Comparator<Integer> comparator;
+
+
         @BeforeEach
-        void createDeque(){
+        void createValues(){
+
             deque = new DoublyLinkedListDeque<>();
+
+            sortedDequeValues = new int[8];
+            for(int i = 0; i < 8; i++){
+                sortedDequeValues[i] = i;
+            }
+
+            comparator = new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return o1 - o2;
+                }
+            };
+
+
+        }
+
+        @Test
+        void noChangesToAnAlreadySortedDeque(){
+
+            for(int i = 0; i < 8; i++){
+                deque.append(sortedDequeValues[i]);
+            }
+
+            deque.sort(comparator);
+
+            int[] obtainedValues = new int[deque.size()];
+
+            for(int i = 0; i < deque.size(); i++){
+                obtainedValues[i] = deque.get(i);
+            }
+
+            assertArrayEquals(sortedDequeValues, obtainedValues);
+
+        }
+
+        @Test
+        void sortingTestOfSwappedValuesDeque(){
+
+            for(int i = 0; i < 8; i++){
+                if(i % 2 == 0){
+                    deque.append(i+1);
+                } else {
+                    deque.append(i-1);
+                }
+            }
+
+            deque.sort(comparator);
+            int[] obtainedValues = new int[deque.size()];
+
+            for(int i = 0; i < deque.size(); i++){
+                obtainedValues[i] = deque.get(i);
+            }
+
+            assertArrayEquals(sortedDequeValues, obtainedValues);
+
+        }
+
+        @Test
+        void sortingTestOfMoreSwappedValuesDeque(){
+
+            for(int i = 0; i < 8; i++){
+                deque.append((i+4) % 8);
+            }
+
+            deque.sort(comparator);
+            int[] obtainedValues = new int[deque.size()];
+
+            for(int i = 0; i < deque.size(); i++){
+                obtainedValues[i] = deque.get(i);
+            }
+
+            assertArrayEquals(sortedDequeValues, obtainedValues);
+
         }
 
     }
