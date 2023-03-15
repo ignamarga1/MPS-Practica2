@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Class for testing DoublyLinkedListDequeTest.java
  *
  * @author Pablo Sánchez González
+ * @author Ignacio Martínez Gallardo
  */
 
 /**
@@ -316,6 +317,12 @@ class DoublyLinkedListDequeTest {
             deque.prepend(item);
             assertEquals (deque.first(), deque.last());
         }
+    }
+
+    @Nested
+    @DisplayName("Obtener un nodo a partir de su índice")
+    class get {
+
     }
 
     @Nested
