@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Class for testing DoublyLinkedListDequeTest.java
  *
  * @author Pablo Sánchez González
+ * @author Ignacio Martínez Gallardo
  */
 
 /**
@@ -320,6 +321,37 @@ class DoublyLinkedListDequeTest {
         }
     }
 
+
+    @Nested
+    @DisplayName("Obtener un nodo a partir de su índice")
+    class get {
+        @BeforeEach
+        void setUp() {
+            deque = new DoublyLinkedListDeque<>();
+            for(int i = 0; i < 5; i++) {
+                deque.prepend(i);
+            }
+        }
+
+        @AfterEach
+        void shutdown() {
+            deque = null;
+        }
+
+        @Test
+        @DisplayName("cuando dicho índice sea negativo")
+        void shouldThrowAnExceptionToGettingTheNodeForANegativeIndexValue() {
+            assertThrows(DoubleEndedQueueException.class, () -> deque.get(-1));
+        }
+
+        @Test
+        @DisplayName("cuando dicho índice sea mayor que el número de nodos que hay en la deque")
+        void shouldThrowAnExceptionToGettingTheNodeForAnOutOfBoundsIndexValue() {
+            assertThrows(DoubleEndedQueueException.class, () -> deque.get(8));
+        }
+
+
+    }
 
     @Nested
     @DisplayName("Ordenar un deque")

@@ -6,6 +6,7 @@ import java.util.Comparator;
  * Class for testing DoublyLinkedListDequeTest.java
  *
  * @author Pablo Sánchez González
+ * @author Ignacio Martínez Gallardo
  */
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
@@ -119,9 +120,14 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     public T get(int index) {
         DequeNode<T> node = this.first;
 
-        for(int i = 0; i < index; i++){
-            node = node.getNext();
+        if(index >= 0 && index < size) {
+            for(int i = 0; i < index; i++){
+                node = node.getNext();
+            }
+        } else {
+            throw new DoubleEndedQueueException("El índice no es válido");
         }
+
         return node.getItem();
     }
 
@@ -133,8 +139,12 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public void remove(T value) {
         DequeNode<T> node = getNodeByValue(value);
-        // Falta añadir cuando size es 1 y si está vacía
-        if(node.isFirstNode()) {
+        if(size == 0) {
+            throw new DoubleEndedQueueException("No se puede eliminar de una deque vacía");
+        } else if(size == 1) {
+            this.first = null;
+            this.last = null;
+        } else if(node.isFirstNode()) {
             this.first.setNext(this.first.getNext());
             this.first.setPrevious(null);
         } else if(node.isLastNode()) {
