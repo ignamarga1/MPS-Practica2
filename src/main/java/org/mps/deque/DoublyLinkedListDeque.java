@@ -6,6 +6,7 @@ import java.util.Comparator;
  * Class for testing DoublyLinkedListDequeTest.java
  *
  * @author Pablo Sánchez González
+ * @author Ignacio Martínez Gallardo
  */
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
