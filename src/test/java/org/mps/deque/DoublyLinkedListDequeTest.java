@@ -324,7 +324,7 @@ class DoublyLinkedListDequeTest {
 
     @Nested
     @DisplayName("Obtener un nodo a partir de su índice")
-    class get {
+    class Get {
         @BeforeEach
         void setUp() {
             deque = new DoublyLinkedListDeque<>();
@@ -350,7 +350,53 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, () -> deque.get(8));
         }
 
+        @Test
+        @DisplayName("cuando la DoublyLinkedListDeque está vacía")
+        void shouldThrowAnExceptionToGettingTheNodeForAnEmptyDeque() {
+            for(int i = 0; i < deque.size(); i++) {
+                deque.remove(i);
+            }
 
+            assertThrows(DoubleEndedQueueException.class, () -> deque.get(2));
+        }
+
+        @Test
+        @DisplayName("cuando dicho índice es correcto")
+        void shouldReturn3AsTheNodeValueWhenTheIndexIs1() {
+            int expectedValue = 3;
+            int actualValue = deque.get(1);
+
+            assertEquals(expectedValue, actualValue);
+        }
+    }
+
+    @Nested
+    @DisplayName("Quitar un nodo de la deque")
+    class Remove {
+        @BeforeEach
+        void setUp() {
+            deque = new DoublyLinkedListDeque<>();
+            for(int i = 0; i < 5; i++) {
+                deque.prepend(i);
+            }
+        }
+
+        @AfterEach
+        void shutdown() {
+            deque = null;
+        }
+
+        /*
+        @Test
+        @DisplayName("cuando la deque está vacía")
+        void shouldThrowAnExceptionWhenTryingToRemoveANodeFromAnEmptyDeque() {
+            for(int i = 0; i < deque.size(); i++) {
+                deque.remove(i);
+            }
+
+            assertThrows(DoubleEndedQueueException.class, () -> deque.remove(7));
+        }
+        */
     }
 
     @Nested
