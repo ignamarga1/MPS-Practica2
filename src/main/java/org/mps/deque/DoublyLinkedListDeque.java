@@ -133,7 +133,8 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public boolean contains(T value) {
-        return getNodeByValue(value) != null;
+        if(size == 0) return false;
+        else return getNodeByValue(value) != null;
     }
 
     @Override
