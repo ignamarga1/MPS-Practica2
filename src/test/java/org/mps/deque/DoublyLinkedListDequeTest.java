@@ -46,10 +46,6 @@ class DoublyLinkedListDequeTest {
 
     DoubleEndedQueue<Integer> deque;
 
-    private boolean isEmpty(DoubleEndedQueue d) {
-        return d.first() == null && d.last() == null;
-    }
-
     @Nested
     @DisplayName("es creado")
     class NewDeque {
@@ -183,25 +179,23 @@ class DoublyLinkedListDequeTest {
             @Test
             @DisplayName("el nodo añadido es el último")
             void appendingNodeInEmptyDequeIsLastNode() {
-                int item = 1;
                 deque.append(1);
 
                 int expectedValue = 1;
                 int actualValue = deque.last();
 
-                assertEquals(1, actualValue);
+                assertEquals(expectedValue, actualValue);
             }
 
             @Test
             @DisplayName("el nodo añadido también es el último")
             void appendingNodeInEmptyDequeIsAlsoFirstNode() {
-                int item = 1;
-                deque.append(item);
+                deque.append(1);
 
                 int expectedValue = 1;
                 int actualValue = deque.first();
 
-                assertEquals(1, actualValue);
+                assertEquals(expectedValue, actualValue);
             }
 
             @Test
@@ -273,13 +267,21 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando el deque tiene tamaño 1, el deque resultante está vacío")
-        void deletingFirstNodeFromSize1DequeResultsInEmptyDeque() {
-            int item = 1;
+        @DisplayName("En un deque de tamaño 1, el primer elemento se vuelve nulo")
+        void deletingFirstNodeFromSize1DequeResultsInNullFirst(){
             deque.append(1);
 
             deque.deleteFirst();
-            assertTrue(isEmpty(deque));
+            assertNull(deque.first());
+        }
+
+        @Test
+        @DisplayName("En un deque de tamaño 1, el último elemento se vuelve nulo")
+        void deletingFirstNodeFromSize1DequeResultsInNullLast(){
+            deque.append(1);
+
+            deque.deleteFirst();
+            assertNull(deque.last());
         }
 
         @Test
@@ -316,13 +318,21 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando el deque tiene tamaño 1, el deque resultante está vacío")
-        void deletingLastNodeFromSize1DequeResultsInEmptyDeque() {
-            int item = 1;
+        @DisplayName("En un deque de tamaño 1, el primer elemento se vuelve nulo")
+        void deletingLastNodeFromSize1DequeResultsInNullFirst(){
             deque.append(1);
 
             deque.deleteLast();
-            assertTrue(isEmpty(deque));
+            assertNull(deque.first());
+        }
+
+        @Test
+        @DisplayName("En un deque de tamaño 1, el último elemento se vuelve nulo")
+        void deletingLastNodeFromSize1DequeResultsInNullLast(){
+            deque.append(1);
+
+            deque.deleteLast();
+            assertNull(deque.last());
         }
 
         @Test
@@ -409,14 +419,11 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("al quitarle un nodo")
+    @DisplayName("Quitar un nodo de una deque")
     class Remove {
         @BeforeEach
         void setUp() {
             deque = new DoublyLinkedListDeque<>();
-            for (int i = 0; i < 5; i++) {
-                deque.prepend(i);
-            }
         }
 
         @AfterEach
@@ -426,33 +433,184 @@ class DoublyLinkedListDequeTest {
 
 
         @Test
-        @DisplayName("cuando la deque está vacía")
+        @DisplayName("cuando está vacía")
         void shouldThrowAnExceptionWhenTryingToRemoveANodeFromAnEmptyDeque() {
-
-            int size = deque.size();
-
-            for (int i = 0; i < size; i++) {
-                deque.remove(i);
-            }
-
-            assertThrows(DoubleEndedQueueException.class, () -> deque.remove(7));
+            assertThrows(DoubleEndedQueueException.class, () -> deque.remove(0));
         }
 
         @Test
-        @DisplayName("cuando solo queda un elemento")
-        void removingAllElementsExceptOneResultsInSize1Deque() {
+        @DisplayName("cuando el elemento no se encuentra en la deque")
+        void shouldThrowAnExceptionWhenTryingToRemoveANodeThatIsNotInDeque(){
+            deque.append(1);
+            assertThrows(DoubleEndedQueueException.class, () -> deque.remove(0));
+        }
 
-            int size = deque.size();
-
-            for (int i = 0; i < size - 1; i++) {
-                deque.remove(i + 1);
+        @Nested
+        @DisplayName("cuando la deque es de tamaño 1")
+        class sizeOne{
+            @Test
+            void removingAnElementInDequeWithSize1ShouldSetFirstElementAsNull(){
+                deque.append(1);
+                deque.remove(1);
+                assertNull(deque.first());
             }
 
-            int expectedValue = 1;
-            int actualValue = deque.size();
-
-            assertEquals(expectedValue, actualValue);
+            @Test
+            void removingAnElementInDequeWithSize1ShouldSetLastElementAsNull(){
+                deque.append(1);
+                deque.remove(1);
+                assertNull(deque.last());
+            }
         }
+
+        @Nested
+        @DisplayName("cuando el elemento a eliminar es el primero")
+        class first{
+            @Test
+            @DisplayName("el primer elemento pasa a ser el segundo")
+            void removingTheFirstElementShouldChangeDequeFirstNode(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(0);
+
+                int expectedValue = 1;
+                int actualValue = deque.first();
+
+                assertEquals(expectedValue, actualValue);
+            }
+
+            @Test
+            @DisplayName("el último elemento se queda como está")
+            void removingTheFirstElementShouldKeepTheSameLastNode(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(0);
+
+                int expectedValue = 2;
+                int actualValue = deque.last();
+
+                assertEquals(expectedValue, actualValue);
+            }
+
+            @Test
+            @DisplayName("el tamaño se reduce en 1")
+            void removingTheFirstElementShouldDecreaseSizeBy1(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(0);
+
+                int expectedValue = 2;
+                int actualValue = deque.size();
+
+                assertEquals(expectedValue, actualValue);
+            }
+        }
+
+        @Nested
+        @DisplayName("cuando el elemento a eliminar es el último")
+        class last{
+            @Test
+            @DisplayName("el último elemento pasa a ser el penúltimo")
+            void removingTheLastElementShouldChangeDequeLastNode(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(2);
+
+                int expectedValue = 1;
+                int actualValue = deque.last();
+
+                assertEquals(expectedValue, actualValue);
+            }
+
+            @Test
+            @DisplayName("el primer elemento se queda como está")
+            void removingTheLastElementShouldKeepTheLastNode(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(2);
+
+                int expectedValue = 0;
+                int actualValue = deque.first();
+
+                assertEquals(expectedValue, actualValue);
+            }
+
+            @Test
+            @DisplayName("el tamaño se reduce en 1")
+            void removingTheLastElementShouldDecreaseSizeBy1(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(2);
+
+                int expectedValue = 2;
+                int actualValue = deque.size();
+
+                assertEquals(expectedValue, actualValue);
+            }
+        }
+
+        @Nested
+        @DisplayName("cuando el elemento a eliminar es central")
+        class middle{
+            @Test
+            @DisplayName("el primer elemento se queda como está")
+            void removingTheElementInTheMiddleShouldKeepTheFirstElement(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(1);
+
+                int expectedValue = 0;
+                int actualValue = deque.first();
+
+                assertEquals(expectedValue, actualValue);
+            }
+
+            @Test
+            @DisplayName("el último elemento se queda como está")
+            void removingTheElementInTheMiddleSHouldKeepTheLastElement(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(1);
+
+                int expectedValue = 2;
+                int actualValue = deque.last();
+
+                assertEquals(expectedValue, actualValue);
+            }
+
+            @Test
+            @DisplayName("el tamaño se reduce en 1")
+            void removingTheElementInTheMiddleShouldDecreaseSizeBy1(){
+                for(int i = 0; i < 3; i++){
+                    deque.append(i);
+                }
+
+                deque.remove(1);
+
+                int expectedValue = 2;
+                int actualValue = deque.size();
+
+                assertEquals(expectedValue, actualValue);
+            }
+        }
+
+
     }
 
     @Nested
@@ -472,7 +630,7 @@ class DoublyLinkedListDequeTest {
                 sortedDequeValues[i] = i;
             }
 
-            comparator = new Comparator<Integer>() {
+            comparator = new Comparator<>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
                     return o1 - o2;
