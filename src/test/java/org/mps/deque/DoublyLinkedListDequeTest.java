@@ -14,31 +14,63 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 /**
+ *
  * 1. Comprueba que, al crear un nuevo deque, su primer elemento es nulo
  * 2. Comprueba que, al crear un nuevo deque, su último elemento es nulo
  * 3. Comprueba que, al crear un nuevo deque, su tamaño es 0
+ *
  * 4. Comprueba que, al insertar un nodo al principio de un deque vacío, el nuevo nodo es el primero
  * 5. Comprueba que, al insertar un nodo al principio de un deque vacío, el nuevo nodo es también el último
  * 6. Comprueba que, al insertar un nodo al principio de un deque vacío, el tamaño del deque es 1
  * 7. Comprueba que, al insertar un nodo al principio de un deque no vacío, el nuevo nodo es el primero
  * 8. Comprueba que, al insertar un nodo al principio de un deque no vacío, el tamaño del deque se incrementa en 1
+ *
  * 9. Comprueba que, al insertar un nodo al final de un deque vacío, el nuevo nodo es el último
  * 10. Comprueba que, al insertar un nodo al final de un deque vacío, el nuevo nodo es también el primero
  * 11. Comprueba que, al insertar un nodo al final de un deque vacío, el tamaño del deque es 1
  * 12. Comprueba que, al insertar un nodo al final de un deque no vacío, el nodo añadido es el último
  * 13. Comprueba que, al insertar un nodo al final de un deque no vacío, el tamaño del deque se incrementa en 1
- * 14. Comprueba que, al intentar borrar el primer elemento de un deque vacío, se lanza una excepción de tipo DoubleEndedQUeueException
- * 15. Comprueba que, al borrar el primer elemento de un deque de tamaño 1, el deque queda vacío
- * 16. Comprueba que, al borrar el primer elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
- * 17. Comprueba que, al intentar borrar el último elemento de un deque vacío, se lanza una excepción de tipo DoubleEndedQUeueException
- * 18. Comprueba que, al borrar el último elemento de un deque de tamaño 1, el deque queda vacío
- * 19. Comprueba que, al borrar el último elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
- * 20. Comprueba que, si un deque tiene tamaño 1, su primer y último elemento son iguales
  *
-<<<<<<< HEAD
-=======
+ * 14. Comprueba que, al intentar borrar el primer elemento de un deque vacío, se lanza una excepción de tipo DoubleEndedQueueException
+ * 15. Comprueba que, al borrar el primer elemento de un deque de tamaño 1, el primero se vuelve nulo y el deque queda vacío
+ * 16. Comprueba que, al borrar el primer elemento de un deque de tamaño 1, el último se vuelve nulo y el deque queda vacío
+ * 17. Comprueba que, al borrar el primer elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
+ * <p>
+ * 18. Comprueba que, al intentar borrar el último elemento de un deque vacío, se lanza una excepción de tipo DoubleEndedQueueException
+ * 19. Comprueba que, al borrar el último elemento de un deque de tamaño 1, el primero se vuelve nulo y el deque queda vacío
+ * 20. Comprueba que, al borrar el último elemento de un deque de tamaño 1, el último se vuelve nulo y el deque queda vacío
+ * 21. Comprueba que, al borrar el último elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
  *
->>>>>>> ccecf0b0bd6fc2a5dee7f87ecd50c7c3feaf41c3
+ * 22. Comprueba que, dado un deque de tamaño 1, cuando comparamos su primer y último elemento obtenemos que son iguales
+ *
+ * 23. Comprueba que, al intentar obtener el valor de un nodo a partir de un índice negativo, se lanza una excepción de tipo DoubleEndedQueueException
+ * 24. Comprueba que, al intentar obtener el valor de un nodo a partir de un índice mayor que el tamaño de la deque, se lanza una excepción de tipo DoubleEndedQueueException
+ * 25. Comprueba que, al intentar obtener el valor de un nodo cuando la deque está vacía, se lanza una excepción de tipo DoubleEndedQueueException
+ * 26. Comprueba que, al pedir el valor de un nodo a partir de un índice correcto, se obtiene el valor del nodo en dicho índice
+ *
+ * 27. Comprueba que, al intentar quitar un nodo de la deque cuando está vacía, se lanza una excepción de tipo DoubleEndedQueueException
+ * 28. Comprueba que, al intentar quitar un nodo que no se encuentra en la deque, se lanza una excepción de tipo DoubleEndedQueueException
+ * 29. Comprueba que, al quitar un nodo uno nodo de una deque con tamaño 1, el primer elemento se vuelve nulo
+ * 30. Comprueba que, al quitar un nodo uno nodo de una deque con tamaño 1, el último elemento se vuelve nulo
+ * 31. Comprueba que, al quitar el primer elemento, el nodo que estaba el segundo es ahora el primero
+ * 32. Comprueba que, al quitar el primer elemento, el nodo que estaba el último se queda como estaba
+ * 33. Comprueba que, al quitar el primer elemento, el tamaño de la deque se decrementa en 1
+ * 34. Comprueba que, al quitar el último elemento, el nodo que como penúltimo es ahora el último
+ * 35. Comprueba que, al quitar el último elemento, el nodo que estaba el primero se queda como estaba
+ * 36. Comprueba que, al quitar el último elemento, el tamaño de la deque se decrementa en 1
+ * 37. Comprueba que, al quitar el elemento central, el nodo que estaba el primero se queda como estaba
+ * 38. Comprueba que, al quitar el elemento central, el nodo que estaba el último se queda como estaba
+ * 39. Comprueba que, al quitar el elemento central, el tamaño de la deque se decrementa en 1
+ *
+ * 40. Comprueba que, al ordenar el deque que ya está ordenado, obtenemos el mismo deque
+ * 41. Comprueba que, al ordenar el deque con algunos valores desordenados, obtenemos el deque ordenado
+ * 42. Comprueba que, al ordenar el deque con muchos valores desordenados, obtenemos el deque ordenado
+ * 43. Comprueba que, al ordenar el deque ordenado de forma decreciente, obtenemos el deque ordenado (de forma creciente)
+ *
+ * 44. Comprueba que, al verificar que un elemento está contenido en un deque vacío, se devuelve false
+ * 45. Comprueba que, al verificar que un elemento que sí está contenido en el deque, se devuelve true
+ * 46. Comprueba que, al verificar que un elemento que no está contenido en el deque, se devuelve false
+ *
  */
 
 @DisplayName("Un Deque")
@@ -79,7 +111,7 @@ class DoublyLinkedListDequeTest {
     @DisplayName("al añadir un nodo al principio usando prepend")
     class PrependingNewNodes {
         @Nested
-        @DisplayName("cuando el deque vacío")
+        @DisplayName("cuando el deque es vacío")
         class EmptyDeque {
             @BeforeEach
             void createDeque() {
@@ -188,7 +220,7 @@ class DoublyLinkedListDequeTest {
             }
 
             @Test
-            @DisplayName("el nodo añadido también es el último")
+            @DisplayName("el nodo añadido también es el primero")
             void appendingNodeInEmptyDequeIsAlsoFirstNode() {
                 deque.append(1);
 
@@ -199,7 +231,7 @@ class DoublyLinkedListDequeTest {
             }
 
             @Test
-            @DisplayName("se incrementa el tamaño en 1")
+            @DisplayName("el tamaño pasa a ser 1")
             void appendingANodeInEmptyDequeMakesItHaveSize1() {
                 int item = 1;
                 deque.append(item);
@@ -267,8 +299,8 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("En un deque de tamaño 1, el primer elemento se vuelve nulo")
-        void deletingFirstNodeFromSize1DequeResultsInNullFirst(){
+        @DisplayName("cuando el deque es de tamaño es 1, el primer elemento se vuelve nulo")
+        void deletingFirstNodeFromSize1DequeResultsInNullFirst() {
             deque.append(1);
 
             deque.deleteFirst();
@@ -276,8 +308,8 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("En un deque de tamaño 1, el último elemento se vuelve nulo")
-        void deletingFirstNodeFromSize1DequeResultsInNullLast(){
+        @DisplayName("cuando el deque es de tamaño 1, el último elemento se vuelve nulo")
+        void deletingFirstNodeFromSize1DequeResultsInNullLast() {
             deque.append(1);
 
             deque.deleteFirst();
@@ -318,8 +350,8 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("En un deque de tamaño 1, el primer elemento se vuelve nulo")
-        void deletingLastNodeFromSize1DequeResultsInNullFirst(){
+        @DisplayName("cuando el deque es de tamaño 1, el primer elemento se vuelve nulo")
+        void deletingLastNodeFromSize1DequeResultsInNullFirst() {
             deque.append(1);
 
             deque.deleteLast();
@@ -328,7 +360,7 @@ class DoublyLinkedListDequeTest {
 
         @Test
         @DisplayName("En un deque de tamaño 1, el último elemento se vuelve nulo")
-        void deletingLastNodeFromSize1DequeResultsInNullLast(){
+        void deletingLastNodeFromSize1DequeResultsInNullLast() {
             deque.append(1);
 
             deque.deleteLast();
@@ -389,19 +421,19 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando dicho índice sea negativo")
+        @DisplayName("cuando dicho índice sea negativo, se lanza una DoubleEndedQueueException")
         void shouldThrowAnExceptionToGettingTheNodeForANegativeIndexValue() {
             assertThrows(DoubleEndedQueueException.class, () -> deque.get(-1));
         }
 
         @Test
-        @DisplayName("cuando dicho índice sea mayor que el número de nodos que hay en la deque")
+        @DisplayName("cuando dicho índice sea mayor que el tamaño de la deque, se lanza una DoubleEndedQueueException")
         void shouldThrowAnExceptionToGettingTheNodeForAnOutOfBoundsIndexValue() {
             assertThrows(DoubleEndedQueueException.class, () -> deque.get(8));
         }
 
         @Test
-        @DisplayName("cuando la deque está vacía")
+        @DisplayName("cuando la deque está vacía, se lanza una DoubleEndedQueueException")
         void shouldThrowAnExceptionToGettingTheNodeForAnEmptyDeque() {
 
             deque = new DoublyLinkedListDeque<>();
@@ -409,7 +441,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando dicho índice es correcto")
+        @DisplayName("cuando tenemos un índice correcto (el 1 en este caso), el valor del nodo en dicho índice es 3")
         void shouldReturn3AsTheNodeValueWhenTheIndexIs1() {
             int expectedValue = 3;
             int actualValue = deque.get(1);
@@ -419,7 +451,7 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Quitar un nodo de una deque")
+    @DisplayName("al quitarle un nodo")
     class Remove {
         @BeforeEach
         void setUp() {
@@ -431,32 +463,33 @@ class DoublyLinkedListDequeTest {
             deque = null;
         }
 
-
         @Test
-        @DisplayName("cuando está vacía")
+        @DisplayName("cuando está vacío, se lanza una DoubleEndedQueueException")
         void shouldThrowAnExceptionWhenTryingToRemoveANodeFromAnEmptyDeque() {
             assertThrows(DoubleEndedQueueException.class, () -> deque.remove(0));
         }
 
         @Test
-        @DisplayName("cuando el elemento no se encuentra en la deque")
-        void shouldThrowAnExceptionWhenTryingToRemoveANodeThatIsNotInDeque(){
+        @DisplayName("cuando el elemento no se encuentra en la deque, se lanza una DoubleEndedQueueException")
+        void shouldThrowAnExceptionWhenTryingToRemoveANodeThatIsNotInDeque() {
             deque.append(1);
             assertThrows(DoubleEndedQueueException.class, () -> deque.remove(0));
         }
 
         @Nested
         @DisplayName("cuando la deque es de tamaño 1")
-        class sizeOne{
+        class SizeOne {
             @Test
-            void removingAnElementInDequeWithSize1ShouldSetFirstElementAsNull(){
+            @DisplayName("el elemento first se vuelve nulo")
+            void removingAnElementInDequeWithSize1ShouldSetFirstElementAsNull() {
                 deque.append(1);
                 deque.remove(1);
                 assertNull(deque.first());
             }
 
             @Test
-            void removingAnElementInDequeWithSize1ShouldSetLastElementAsNull(){
+            @DisplayName("el elemento last se vuelve nulo")
+            void removingAnElementInDequeWithSize1ShouldSetLastElementAsNull() {
                 deque.append(1);
                 deque.remove(1);
                 assertNull(deque.last());
@@ -465,11 +498,11 @@ class DoublyLinkedListDequeTest {
 
         @Nested
         @DisplayName("cuando el elemento a eliminar es el primero")
-        class first{
+        class First {
             @Test
             @DisplayName("el primer elemento pasa a ser el segundo")
-            void removingTheFirstElementShouldChangeDequeFirstNode(){
-                for(int i = 0; i < 3; i++){
+            void removingTheFirstElementShouldChangeDequeFirstNode() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -483,8 +516,8 @@ class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("el último elemento se queda como está")
-            void removingTheFirstElementShouldKeepTheSameLastNode(){
-                for(int i = 0; i < 3; i++){
+            void removingTheFirstElementShouldKeepTheSameLastNode() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -497,9 +530,9 @@ class DoublyLinkedListDequeTest {
             }
 
             @Test
-            @DisplayName("el tamaño se reduce en 1")
-            void removingTheFirstElementShouldDecreaseSizeBy1(){
-                for(int i = 0; i < 3; i++){
+            @DisplayName("el tamaño se decrementa en 1")
+            void removingTheFirstElementShouldDecreaseSizeBy1() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -514,11 +547,11 @@ class DoublyLinkedListDequeTest {
 
         @Nested
         @DisplayName("cuando el elemento a eliminar es el último")
-        class last{
+        class Last {
             @Test
             @DisplayName("el último elemento pasa a ser el penúltimo")
-            void removingTheLastElementShouldChangeDequeLastNode(){
-                for(int i = 0; i < 3; i++){
+            void removingTheLastElementShouldChangeDequeLastNode() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -532,8 +565,8 @@ class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("el primer elemento se queda como está")
-            void removingTheLastElementShouldKeepTheLastNode(){
-                for(int i = 0; i < 3; i++){
+            void removingTheLastElementShouldKeepTheLastNode() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -546,9 +579,9 @@ class DoublyLinkedListDequeTest {
             }
 
             @Test
-            @DisplayName("el tamaño se reduce en 1")
-            void removingTheLastElementShouldDecreaseSizeBy1(){
-                for(int i = 0; i < 3; i++){
+            @DisplayName("el tamaño se decrementa en 1")
+            void removingTheLastElementShouldDecreaseSizeBy1() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -563,11 +596,11 @@ class DoublyLinkedListDequeTest {
 
         @Nested
         @DisplayName("cuando el elemento a eliminar es central")
-        class middle{
+        class Middle {
             @Test
             @DisplayName("el primer elemento se queda como está")
-            void removingTheElementInTheMiddleShouldKeepTheFirstElement(){
-                for(int i = 0; i < 3; i++){
+            void removingTheElementInTheMiddleShouldKeepTheFirstElement() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -581,8 +614,8 @@ class DoublyLinkedListDequeTest {
 
             @Test
             @DisplayName("el último elemento se queda como está")
-            void removingTheElementInTheMiddleSHouldKeepTheLastElement(){
-                for(int i = 0; i < 3; i++){
+            void removingTheElementInTheMiddleSHouldKeepTheLastElement() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -595,9 +628,9 @@ class DoublyLinkedListDequeTest {
             }
 
             @Test
-            @DisplayName("el tamaño se reduce en 1")
-            void removingTheElementInTheMiddleShouldDecreaseSizeBy1(){
-                for(int i = 0; i < 3; i++){
+            @DisplayName("el tamaño se decrementa en 1")
+            void removingTheElementInTheMiddleShouldDecreaseSizeBy1() {
+                for (int i = 0; i < 3; i++) {
                     deque.append(i);
                 }
 
@@ -609,8 +642,6 @@ class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, actualValue);
             }
         }
-
-
     }
 
     @Nested
@@ -698,7 +729,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando sus valores están ordenados de mayor a menor")
+        @DisplayName("cuando sus valores están ordenados en orden decreciente")
         void sortingTestOfWorstCaseDeque() {
 
             for (int i = 0; i < 8; i++) {
@@ -717,8 +748,8 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("al comprobar si un elemento se encuentra")
-    class contains {
+    @DisplayName("al comprobar si un elemento está contenido")
+    class Contains {
 
         @BeforeEach
         void createDeque() {
@@ -726,20 +757,20 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando está vacío devuelve FALSE")
+        @DisplayName("cuando está vacío devuelve false")
         void anEmptyDequeReturnsFalse() {
             assertFalse(deque.contains(1));
         }
 
         @Test
-        @DisplayName("cuando el elemento SI está contenido devuelve TRUE")
+        @DisplayName("cuando el elemento sí está contenido devuelve true")
         void contains1AfterAppending1() {
             deque.append(1);
             assertTrue(deque.contains(1));
         }
 
         @Test
-        @DisplayName("cuando el elemento NO está contenido devuelve FALSE")
+        @DisplayName("cuando el elemento no está contenido devuelve false")
         void doesntContain2AfterAppending1() {
             deque.append(1);
             assertFalse(deque.contains(2));
