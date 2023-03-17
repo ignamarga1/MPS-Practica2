@@ -22,7 +22,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void prepend(T value) {
-        if(size == 0){
+        if (size == 0) {
             this.first = new DequeNode<>(value, null, null);
             this.last = this.first;
         } else {
@@ -36,7 +36,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void append(T value) {
-        if(size == 0){
+        if (size == 0) {
             this.first = new DequeNode<>(value, null, null);
             this.last = this.first;
         } else {
@@ -49,9 +49,9 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void deleteFirst() {
-        if(size == 0){
+        if (size == 0) {
             throw new DoubleEndedQueueException("La cola está vacía");
-        } else if (size == 1){
+        } else if (size == 1) {
             this.first = null;
             this.last = null;
             size--;
@@ -64,9 +64,9 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public void deleteLast() {
-        if(size == 0){
+        if (size == 0) {
             throw new DoubleEndedQueueException("La cola está vacía");
-        } else if (size == 1){
+        } else if (size == 1) {
             this.first = null;
             this.last = null;
             size--;
@@ -79,7 +79,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public T first() {
-        if(this.first == null){
+        if (this.first == null) {
             return null;
         } else
             return this.first.getItem();
@@ -88,7 +88,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public T last() {
 
-        if(this.last == null){
+        if (this.last == null) {
             return null;
         } else
             return this.last.getItem();
@@ -99,13 +99,13 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         return size;
     }
 
-    private DequeNode<T> getNodeByValue(T value){
+    private DequeNode<T> getNodeByValue(T value) {
         boolean found = false;
         DequeNode<T> node = this.first;
 
-        while(!found && node != null){
+        while (!found && node != null) {
 
-            if(node.getItem().equals(value)){
+            if (node.getItem().equals(value)) {
                 found = true;
             } else {
                 node = node.getNext();
@@ -120,8 +120,8 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     public T get(int index) {
         DequeNode<T> node = this.first;
 
-        if(index >= 0 && index < size) {
-            for(int i = 0; i < index; i++){
+        if (index >= 0 && index < size) {
+            for (int i = 0; i < index; i++) {
                 node = node.getNext();
             }
         } else {
@@ -133,22 +133,29 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     @Override
     public boolean contains(T value) {
-        if(size == 0) return false;
+        if (size == 0) return false;
         else return getNodeByValue(value) != null;
     }
 
     @Override
     public void remove(T value) {
         DequeNode<T> node = getNodeByValue(value);
-        if(size == 0) {
-            throw new DoubleEndedQueueException("No se puede eliminar de una deque vacía");
-        } else if (size == 1){
+
+        if (node == null) {
+            throw new DoubleEndedQueueException("El valor no se encuentra en la lista");
+        }
+
+        if (size == 0) {
+            throw new DoubleEndedQueueException("No se puede eliminar ningún elemento de una deque vacía");
+        }
+
+        if (size == 1) {
             this.first = null;
             this.last = null;
-        } else if(node.isFirstNode()) {
+        } else if (node.isFirstNode()) {
             this.first = this.first.getNext();
             this.first.setPrevious(null);
-        } else if(node.isLastNode()) {
+        } else if (node.isLastNode()) {
             this.last = this.last.getPrevious();
             this.last.setNext(null);
         } else {
@@ -177,7 +184,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
             // Creamos una variable para indicar si hubo intercambios en esta iteración
             DequeNode<T> node = this.first;
             // Iteramos sobre los elementos restantes de la lista
-            for (int j = 0; j < this.size-i-1; j++) {
+            for (int j = 0; j < this.size - i - 1; j++) {
                 // Si el elemento actual es mayor que el siguiente, los intercambiamos
 
                 if (comparator.compare(node.getItem(), node.getNext().getItem()) > 0) {
