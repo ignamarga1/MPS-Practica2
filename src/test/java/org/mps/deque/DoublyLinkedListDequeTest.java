@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 /**
- *
  * 1. Comprueba que, al crear un nuevo deque, su primer elemento es nulo
  * 2. Comprueba que, al crear un nuevo deque, su último elemento es nulo
  * 3. Comprueba que, al crear un nuevo deque, su tamaño es 0
@@ -35,43 +34,40 @@ import static org.junit.jupiter.api.Assertions.*;
  * 18. Comprueba que, al borrar el último elemento de un deque de tamaño 1, el deque queda vacío
  * 19. Comprueba que, al borrar el último elemento de un deque de tamaño superior a 1, el deque decrementa su tamaño en 1
  * 20. Comprueba que, si un deque tiene tamaño 1, su primer y último elemento son iguales
- *
  */
 
 @DisplayName("Un Deque")
 class DoublyLinkedListDequeTest {
 
-
     DoubleEndedQueue<Integer> deque;
 
-    private boolean isEmpty(DoubleEndedQueue d){
+    private boolean isEmpty(DoubleEndedQueue d) {
         return d.first() == null && d.last() == null;
     }
 
     @Nested
-    @DisplayName("Casos de prueba de un deque recién creado")
-    class NewDeque{
+    @DisplayName("es creado")
+    class NewDeque {
         @BeforeEach
-        void createDeque(){
+        void createDeque() {
             deque = new DoublyLinkedListDeque<>();
         }
 
-        @DisplayName("El primer nodo es nulo")
         @Test
-        void newDequeFirstIsNull(){
+        @DisplayName("cuando pedimos el primer elemento devuelve null")
+        void shouldReturnNullToNewDequeFirst() {
             assertNull(deque.first());
         }
 
-        @DisplayName("El último nodo es nulo")
         @Test
-        void newDequeLastIsNull(){
+        @DisplayName("cuando pedimos el último elemento devuelve null")
+        void shouldReturnNullToNewDequeLast() {
             assertNull(deque.last());
         }
 
-        @DisplayName("El tamaño es 0")
         @Test
-        void newDequeSizeIs0(){
-
+        @DisplayName("su tamaño es 0")
+        void newDequeSizeIs0() {
             int expectedValue = 0;
             int actualValue = deque.size();
             assertEquals(expectedValue, actualValue);
@@ -79,20 +75,19 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Casos de prueba de añadir un nodo al principio")
-    class PrependingNewNodes{
-
+    @DisplayName("al añadir un nodo al principio usando prepend")
+    class PrependingNewNodes {
         @Nested
-        @DisplayName("En un deque vacío")
-        class EmptyDeque{
-
+        @DisplayName("cuando el deque vacío")
+        class EmptyDeque {
             @BeforeEach
-            void createDeque(){
+            void createDeque() {
                 deque = new DoublyLinkedListDeque<>();
             }
+
             @Test
-            @DisplayName("El nodo añadido es el primero")
-            void prependingNodeInEmptyDequeIsTheFirstNode(){
+            @DisplayName("el nodo añadido es el primero")
+            void prependingANodeInEmptyDequeMakesItTheFirstNode() {
                 int item = 1;
                 deque.prepend(item);
 
@@ -101,9 +96,10 @@ class DoublyLinkedListDequeTest {
 
                 assertEquals(expectedValue, actualValue);
             }
-            @DisplayName("El nodo añadido también es el último")
+
             @Test
-            void prependingNodeInEmptyDequeIsAlsoTheLastNode(){
+            @DisplayName("el nodo añadido también es el último")
+            void prependingANodeInEmptyDequeIsAlsoMakesItTheLastNode() {
                 int item = 1;
                 deque.prepend(item);
 
@@ -113,9 +109,9 @@ class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, actualValue);
             }
 
-            @DisplayName("El tamaño es 1 tras la inserción")
             @Test
-            void prependingANodeInEmptyDequeMakesItHaveSize1(){
+            @DisplayName("el tamaño pasa a ser 1")
+            void prependingANodeInEmptyDequeMakesItHaveSize1() {
                 int item = 1;
                 deque.prepend(item);
 
@@ -124,20 +120,18 @@ class DoublyLinkedListDequeTest {
 
                 assertEquals(expectedValue, actualValue);
             }
-
-
         }
 
         @Nested
-        @DisplayName("En un deque no vacío")
-        class NonEmptyDeques{
+        @DisplayName("cuando el deque no está vacío")
+        class NonEmptyDeques {
             @BeforeEach
-            void createDeque(){
+            void createDeque() {
                 deque = new DoublyLinkedListDeque<>();
             }
 
-            @DisplayName("En un deque no vacío, el nodo añadido es el primero")
             @Test
+            @DisplayName("el nodo añadido es el primero")
             void prependingNodeInDequeIsFirst() {
                 int item1 = 1;
                 int item2 = 2;
@@ -150,9 +144,9 @@ class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, actualValue);
             }
 
-            @DisplayName("En un deque no vacío, se incrementa el tamaño en 1")
             @Test
-            void prependingANodeIncreasesSizeBy1(){
+            @DisplayName("se incrementa el tamaño en 1")
+            void prependingANodeIncreasesSizeBy1() {
                 int item1 = 1;
                 int item2 = 2;
                 deque.prepend(item1);
@@ -164,51 +158,50 @@ class DoublyLinkedListDequeTest {
                 int expectedValue = prevSize + 1;
                 int actualValue = deque.size();
 
-
                 assertEquals(expectedValue, actualValue);
             }
         }
-
     }
 
     @Nested
-    @DisplayName("Casos de prueba de añadir un nodo al final")
-    class appendingNewNodes{
+    @DisplayName("al añadir un nodo al final usando append")
+    class appendingNewNodes {
 
         @Nested
-        @DisplayName("En un deque vacío")
-        class EmptyDeque{
+        @DisplayName("cuando el deque está vacío")
+        class EmptyDeque {
             @BeforeEach
-            void createDeque(){
+            void createDeque() {
                 deque = new DoublyLinkedListDeque<>();
             }
-            @DisplayName("El nodo añadido es el último")
+
             @Test
-            void appendingNodeInEmptyDequeIsLastNode(){
+            @DisplayName("el nodo añadido es el último")
+            void appendingNodeInEmptyDequeIsLastNode() {
                 int item = 1;
                 deque.append(1);
 
                 int expectedValue = 1;
                 int actualValue = deque.last();
 
-                assertEquals (1, actualValue);
+                assertEquals(1, actualValue);
             }
 
-            @DisplayName("El nodo añadido es el primero")
             @Test
-            void appendingNodeInEmptyDequeIsAlsoFirstNode(){
+            @DisplayName("el nodo añadido también es el último")
+            void appendingNodeInEmptyDequeIsAlsoFirstNode() {
                 int item = 1;
                 deque.append(item);
 
                 int expectedValue = 1;
                 int actualValue = deque.first();
 
-                assertEquals (1, actualValue);
+                assertEquals(1, actualValue);
             }
 
-            @DisplayName("El tamaño es 1 tras la inserción")
             @Test
-            void appendingANodeInEmptyDequeMakesItHaveSize1(){
+            @DisplayName("se incrementa el tamaño en 1")
+            void appendingANodeInEmptyDequeMakesItHaveSize1() {
                 int item = 1;
                 deque.append(item);
 
@@ -217,22 +210,19 @@ class DoublyLinkedListDequeTest {
 
                 assertEquals(expectedValue, actualValue);
             }
-
-
         }
 
         @Nested
-        @DisplayName("En un deque no vacío")
-        class NonEmptyDeque{
-
+        @DisplayName("cuando el deque no está vacío")
+        class NonEmptyDeque {
             @BeforeEach
-            void createDeque(){
+            void createDeque() {
                 deque = new DoublyLinkedListDeque<>();
             }
 
-            @DisplayName("El nodo añadido es el último")
             @Test
-            void appendingNodeInDequeIsLast(){
+            @DisplayName("el nodo añadido es el último")
+            void appendingNodeInDequeIsLast() {
                 int item1 = 1;
                 int item2 = 2;
                 deque.append(item1);
@@ -244,9 +234,9 @@ class DoublyLinkedListDequeTest {
                 assertEquals(expectedValue, actualValue);
             }
 
-            @DisplayName("Se incrementa el tamaño en 1")
             @Test
-            void appendingANodeIncreasesSizeBy1(){
+            @DisplayName("se incrementa el tamaño en 1")
+            void appendingANodeIncreasesSizeBy1() {
                 int item1 = 1;
                 int item2 = 2;
                 deque.append(item1);
@@ -258,29 +248,28 @@ class DoublyLinkedListDequeTest {
                 int expectedValue = prevSize + 1;
                 int actualValue = deque.size();
 
-                assertEquals(prevSize + 1, deque.size());
+                assertEquals(expectedValue, actualValue);
             }
         }
     }
 
     @Nested
-    @DisplayName("Casos de prueba de eliminar el primer nodo")
-    class DeleteFirst{
-
+    @DisplayName("al eliminar el primer nodo con deleteFirst")
+    class DeleteFirst {
         @BeforeEach
-        void createDeque(){
+        void createDeque() {
             deque = new DoublyLinkedListDeque<>();
         }
 
-        @DisplayName("En un deque vacío, salta una DoubleEndedQueueException")
         @Test
-        void deletingFirstNodeFromEmptyDequeThrowsDoubleEndedQueueException(){
+        @DisplayName("cuando el deque está vacío, se lanza una DoubleEndedQueueException")
+        void deletingFirstNodeFromEmptyDequeThrowsDoubleEndedQueueException() {
             assertThrows(DoubleEndedQueueException.class, () -> deque.deleteFirst());
         }
 
-        @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
         @Test
-        void deletingFirstNodeFromSize1DequeResultsInEmptyDeque(){
+        @DisplayName("cuando el deque tiene tamaño 1, el deque resultante está vacío")
+        void deletingFirstNodeFromSize1DequeResultsInEmptyDeque() {
             int item = 1;
             deque.append(1);
 
@@ -288,9 +277,9 @@ class DoublyLinkedListDequeTest {
             assertTrue(isEmpty(deque));
         }
 
-        @DisplayName("En un deque no vacío, se decrementa el tamaño en 1")
         @Test
-        void deletingFirstNodeDecreaseSizeBy1(){
+        @DisplayName("cuando el deque no está vacío, se decrementa el tamaño en 1")
+        void deletingFirstNodeDecreaseSizeBy1() {
             int item1 = 1;
             int item2 = 2;
             deque.append(item1);
@@ -305,28 +294,25 @@ class DoublyLinkedListDequeTest {
 
             assertEquals(expectedValue, actualValue);
         }
-
-
     }
 
     @Nested
-    @DisplayName("Casos de prueba de eliminar el último nodo")
-    class DeleteLast{
-
+    @DisplayName("al eliminar el último nodo con deleteLast")
+    class DeleteLast {
         @BeforeEach
-        void createDeque(){
+        void createDeque() {
             deque = new DoublyLinkedListDeque<>();
         }
 
-        @DisplayName("En un deque vacío, salta una DoubleEndedQueueException")
         @Test
-        void deletingLastNodeFromEmptyDequeThrowsDoubleEndedQueueException(){
+        @DisplayName("cuando el deque está vacío, se lanza una DoubleEndedQueueException")
+        void deletingLastNodeFromEmptyDequeThrowsDoubleEndedQueueException() {
             assertThrows(DoubleEndedQueueException.class, () -> deque.deleteLast());
         }
 
-        @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
         @Test
-        void deletingLastNodeFromSize1DequeResultsInEmptyDeque(){
+        @DisplayName("cuando el deque tiene tamaño 1, el deque resultante está vacío")
+        void deletingLastNodeFromSize1DequeResultsInEmptyDeque() {
             int item = 1;
             deque.append(1);
 
@@ -334,9 +320,9 @@ class DoublyLinkedListDequeTest {
             assertTrue(isEmpty(deque));
         }
 
-        @DisplayName("En un deque no vacío, se decrementa el tamaño en 1")
         @Test
-        void deletingLastNodeFromDequeDecreaseSizeBy1(){
+        @DisplayName("cuando el deque no está vacío, se decrementa el tamaño en 1")
+        void deletingLastNodeFromDequeDecreaseSizeBy1() {
             int item1 = 1;
             int item2 = 2;
             deque.append(item1);
@@ -354,20 +340,20 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Propiedades")
+    @DisplayName("Propiedades:")
     class Properties {
-
         @BeforeEach
-        void createDeque(){
+        void createDeque() {
             deque = new DoublyLinkedListDeque<>();
         }
 
-        @DisplayName("Dado un deque de tamaño 1, el primer y último nodo es el mismo")
         @Test
-        void size1DequeFirstEqualsLast(){
+        @DisplayName("dado un deque de tamaño 1, el primer y último nodo es el mismo")
+        void size1DequeFirstEqualsLast() {
             int item = 1;
             deque.prepend(item);
-            assertEquals (deque.first(), deque.last());
+
+            assertEquals(deque.first(), deque.last());
         }
     }
 
@@ -377,7 +363,7 @@ class DoublyLinkedListDequeTest {
         @BeforeEach
         void setUp() {
             deque = new DoublyLinkedListDeque<>();
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 deque.prepend(i);
             }
         }
@@ -423,7 +409,7 @@ class DoublyLinkedListDequeTest {
         @BeforeEach
         void setUp() {
             deque = new DoublyLinkedListDeque<>();
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 deque.prepend(i);
             }
         }
@@ -440,29 +426,28 @@ class DoublyLinkedListDequeTest {
 
             int size = deque.size();
 
-            for(int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 deque.remove(i);
             }
 
             assertThrows(DoubleEndedQueueException.class, () -> deque.remove(7));
         }
+
         @Test
         @DisplayName("cuando solo queda un elemento")
-        void removingAllElementsExceptOneResultsInSize1Deque(){
+        void removingAllElementsExceptOneResultsInSize1Deque() {
 
             int size = deque.size();
 
-            for(int i = 0; i < size - 1; i++){
-                deque.remove(i+1);
+            for (int i = 0; i < size - 1; i++) {
+                deque.remove(i + 1);
             }
 
             int expectedValue = 1;
             int actualValue = deque.size();
 
             assertEquals(expectedValue, actualValue);
-
         }
-
     }
 
     @Nested
@@ -473,12 +458,12 @@ class DoublyLinkedListDequeTest {
         Comparator<Integer> comparator;
 
         @BeforeEach
-        void createValues(){
+        void createValues() {
 
             deque = new DoublyLinkedListDeque<>();
 
             sortedDequeValues = new int[8];
-            for(int i = 0; i < 8; i++){
+            for (int i = 0; i < 8; i++) {
                 sortedDequeValues[i] = i;
             }
 
@@ -492,9 +477,9 @@ class DoublyLinkedListDequeTest {
 
         @Test
         @DisplayName("cuando sus valores ya están ordenados")
-        void noChangesToAnAlreadySortedDeque(){
+        void noChangesToAnAlreadySortedDeque() {
 
-            for(int i = 0; i < 8; i++){
+            for (int i = 0; i < 8; i++) {
                 deque.append(sortedDequeValues[i]);
             }
 
@@ -502,7 +487,7 @@ class DoublyLinkedListDequeTest {
 
             int[] obtainedValues = new int[deque.size()];
 
-            for(int i = 0; i < deque.size(); i++){
+            for (int i = 0; i < deque.size(); i++) {
                 obtainedValues[i] = deque.get(i);
             }
 
@@ -511,20 +496,20 @@ class DoublyLinkedListDequeTest {
 
         @Test
         @DisplayName("cuando algunos valores están desordenados")
-        void sortingTestOfSwappedValuesDeque(){
+        void sortingTestOfSwappedValuesDeque() {
 
-            for(int i = 0; i < 8; i++){
-                if(i % 2 == 0){
-                    deque.append(i+1);
+            for (int i = 0; i < 8; i++) {
+                if (i % 2 == 0) {
+                    deque.append(i + 1);
                 } else {
-                    deque.append(i-1);
+                    deque.append(i - 1);
                 }
             }
 
             deque.sort(comparator);
             int[] obtainedValues = new int[deque.size()];
 
-            for(int i = 0; i < deque.size(); i++){
+            for (int i = 0; i < deque.size(); i++) {
                 obtainedValues[i] = deque.get(i);
             }
 
@@ -533,16 +518,16 @@ class DoublyLinkedListDequeTest {
 
         @Test
         @DisplayName("cuando muchos valores están desordenados")
-        void sortingTestOfMoreSwappedValuesDeque(){
+        void sortingTestOfMoreSwappedValuesDeque() {
 
-            for(int i = 0; i < 8; i++){
-                deque.append((i+4) % 8);
+            for (int i = 0; i < 8; i++) {
+                deque.append((i + 4) % 8);
             }
 
             deque.sort(comparator);
             int[] obtainedValues = new int[deque.size()];
 
-            for(int i = 0; i < deque.size(); i++){
+            for (int i = 0; i < deque.size(); i++) {
                 obtainedValues[i] = deque.get(i);
             }
 
@@ -551,16 +536,16 @@ class DoublyLinkedListDequeTest {
 
         @Test
         @DisplayName("cuando sus valores están ordenados de mayor a menor")
-        void sortingTestOfWorstCaseDeque(){
+        void sortingTestOfWorstCaseDeque() {
 
-            for(int i = 0; i < 8; i++){
-                deque.append(7-i);
+            for (int i = 0; i < 8; i++) {
+                deque.append(7 - i);
             }
 
             deque.sort(comparator);
             int[] obtainedValues = new int[deque.size()];
 
-            for(int i = 0; i < deque.size(); i++){
+            for (int i = 0; i < deque.size(); i++) {
                 obtainedValues[i] = deque.get(i);
             }
 
@@ -573,26 +558,26 @@ class DoublyLinkedListDequeTest {
     class contains {
 
         @BeforeEach
-        void createDeque(){
+        void createDeque() {
             deque = new DoublyLinkedListDeque<>();
         }
 
         @Test
         @DisplayName("cuando está vacía devuelve FALSE")
-        void anEmptyDequeReturnsFalse(){
+        void anEmptyDequeReturnsFalse() {
             assertFalse(deque.contains(1));
         }
 
         @Test
         @DisplayName("cuando el elemento SI está contenido devuelve TRUE")
-        void contains1AfterAppending1(){
+        void contains1AfterAppending1() {
             deque.append(1);
             assertTrue(deque.contains(1));
         }
 
         @Test
         @DisplayName("cuando el elemento NO está contenido devuelve FALSE")
-        void doesntContain2AfterAppending1(){
+        void doesntContain2AfterAppending1() {
             deque.append(1);
             assertFalse(deque.contains(2));
         }
