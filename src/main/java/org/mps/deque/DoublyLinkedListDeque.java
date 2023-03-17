@@ -141,12 +141,12 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     public void remove(T value) {
         DequeNode<T> node = getNodeByValue(value);
 
-        if (node == null) {
-            throw new DoubleEndedQueueException("El valor no se encuentra en la lista");
-        }
-
         if (size == 0) {
             throw new DoubleEndedQueueException("No se puede eliminar ningún elemento de una deque vacía");
+        }
+
+        if (node == null) {
+            throw new DoubleEndedQueueException("El valor no se encuentra en la lista");
         }
 
         if (size == 1) {
