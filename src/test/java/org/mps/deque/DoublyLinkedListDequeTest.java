@@ -358,7 +358,7 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Obtener el valor de un nodo a partir de su índice")
+    @DisplayName("al obtener el valor de un nodo a partir de su índice")
     class Get {
         @BeforeEach
         void setUp() {
@@ -404,7 +404,7 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Quitar un nodo de la deque")
+    @DisplayName("al quitarle un nodo")
     class Remove {
         @BeforeEach
         void setUp() {
@@ -451,7 +451,7 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Ordenar un deque")
+    @DisplayName("al ordenarlo")
     class Sort {
 
         int[] sortedDequeValues;
@@ -554,7 +554,7 @@ class DoublyLinkedListDequeTest {
     }
 
     @Nested
-    @DisplayName("Comprobar si un elemento se encuentra en la deque")
+    @DisplayName("al comprobar si un elemento se encuentra")
     class contains {
 
         @BeforeEach
@@ -563,7 +563,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando está vacía devuelve FALSE")
+        @DisplayName("cuando está vacío devuelve FALSE")
         void anEmptyDequeReturnsFalse() {
             assertFalse(deque.contains(1));
         }
