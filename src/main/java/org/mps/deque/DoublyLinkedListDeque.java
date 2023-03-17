@@ -142,12 +142,15 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
         DequeNode<T> node = getNodeByValue(value);
         if(size == 0) {
             throw new DoubleEndedQueueException("No se puede eliminar de una deque vacía");
+        } else if (size == 1){
+            this.first = null;
+            this.last = null;
         } else if(node.isFirstNode()) {
-            this.first.setNext(this.first.getNext());
+            this.first = this.first.getNext();
             this.first.setPrevious(null);
         } else if(node.isLastNode()) {
+            this.last = this.last.getPrevious();
             this.last.setNext(null);
-            this.last.setNext(this.last.getPrevious());
         } else {
             node.getPrevious().setNext(node.getNext());
             node.getNext().setPrevious(node.getPrevious());

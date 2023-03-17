@@ -1,8 +1,6 @@
 package org.mps.deque;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Comparator;
 
@@ -405,10 +403,13 @@ class DoublyLinkedListDequeTest {
         @Test
         @DisplayName("cuando la DoublyLinkedListDeque está vacía")
         void shouldThrowAnExceptionToGettingTheNodeForAnEmptyDeque() {
+
+            /*
             for(int i = 0; i < deque.size(); i++) {
                 deque.remove(i);
             }
-
+*/
+            deque = new DoublyLinkedListDeque<>();
             assertThrows(DoubleEndedQueueException.class, () -> deque.get(2));
         }
 
@@ -438,17 +439,35 @@ class DoublyLinkedListDequeTest {
             deque = null;
         }
 
-        /*
+
         @Test
         @DisplayName("cuando la deque está vacía")
         void shouldThrowAnExceptionWhenTryingToRemoveANodeFromAnEmptyDeque() {
-            for(int i = 0; i < deque.size(); i++) {
+
+            int size = deque.size();
+
+            for(int i = 0; i < size; i++) {
                 deque.remove(i);
             }
 
             assertThrows(DoubleEndedQueueException.class, () -> deque.remove(7));
         }
-        */
+        @Test
+        void removingAllElementsExceptOneResultsInSize1Deque(){
+
+            int size = deque.size();
+
+            for(int i = 0; i < size - 1; i++){
+                deque.remove(i+1);
+            }
+
+            int expectedValue = 1;
+            int actualValue = deque.size();
+
+            assertEquals(expectedValue, actualValue);
+
+        }
+
     }
 
     @Nested
