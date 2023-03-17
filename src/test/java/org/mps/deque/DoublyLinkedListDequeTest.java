@@ -327,13 +327,22 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, () -> deque.deleteLast());
         }
 
-        @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
+        @DisplayName("En un deque de tamaño 1, el primer elemento se vuelve nulo")
+        @Test
+        void deletingLastNodeFromSize1DequeResultsInNullFirst(){
+            deque.append(1);
+
+            deque.deleteLast();
+            assertNull(deque.first());
+        }
+
+        @DisplayName("En un deque de tamaño 1, el último elemento se vuelve nulo")
         @Test
         void deletingLastNodeFromSize1DequeResultsInEmptyDeque(){
             deque.append(1);
 
             deque.deleteLast();
-            assertTrue(isEmpty(deque));
+            assertNull(deque.first());
         }
 
         @DisplayName("En un deque no vacío, se decrementa el tamaño en 1")
