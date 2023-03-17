@@ -373,7 +373,7 @@ class DoublyLinkedListDequeTest {
 
 
     @Nested
-    @DisplayName("Obtener un nodo a partir de su índice")
+    @DisplayName("Obtener el valor de un nodo a partir de su índice")
     class Get {
         @BeforeEach
         void setUp() {
@@ -401,14 +401,9 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("cuando la DoublyLinkedListDeque está vacía")
+        @DisplayName("cuando la deque está vacía")
         void shouldThrowAnExceptionToGettingTheNodeForAnEmptyDeque() {
 
-            /*
-            for(int i = 0; i < deque.size(); i++) {
-                deque.remove(i);
-            }
-*/
             deque = new DoublyLinkedListDeque<>();
             assertThrows(DoubleEndedQueueException.class, () -> deque.get(2));
         }
@@ -453,6 +448,7 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, () -> deque.remove(7));
         }
         @Test
+        @DisplayName("cuando solo queda un elemento")
         void removingAllElementsExceptOneResultsInSize1Deque(){
 
             int size = deque.size();
@@ -472,11 +468,10 @@ class DoublyLinkedListDequeTest {
 
     @Nested
     @DisplayName("Ordenar un deque")
-    class Sort{
+    class Sort {
 
         int[] sortedDequeValues;
         Comparator<Integer> comparator;
-
 
         @BeforeEach
         void createValues(){
@@ -494,11 +489,10 @@ class DoublyLinkedListDequeTest {
                     return o1 - o2;
                 }
             };
-
-
         }
 
         @Test
+        @DisplayName("cuando sus valores ya están ordenados")
         void noChangesToAnAlreadySortedDeque(){
 
             for(int i = 0; i < 8; i++){
@@ -514,10 +508,10 @@ class DoublyLinkedListDequeTest {
             }
 
             assertArrayEquals(sortedDequeValues, obtainedValues);
-
         }
 
         @Test
+        @DisplayName("cuando algunos valores están desordenados")
         void sortingTestOfSwappedValuesDeque(){
 
             for(int i = 0; i < 8; i++){
@@ -540,6 +534,7 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
+        @DisplayName("cuando muchos valores están desordenados")
         void sortingTestOfMoreSwappedValuesDeque(){
 
             for(int i = 0; i < 8; i++){
@@ -554,10 +549,10 @@ class DoublyLinkedListDequeTest {
             }
 
             assertArrayEquals(sortedDequeValues, obtainedValues);
-
         }
 
         @Test
+        @DisplayName("cuando sus valores están ordenados de mayor a menor")
         void sortingTestOfWorstCaseDeque(){
 
             for(int i = 0; i < 8; i++){
@@ -572,14 +567,12 @@ class DoublyLinkedListDequeTest {
             }
 
             assertArrayEquals(sortedDequeValues, obtainedValues);
-
         }
-
     }
 
     @Nested
-    @DisplayName("Al comprobar si un elemento se encuentra en la cola")
-    class contains{
+    @DisplayName("Comprobar si un elemento se encuentra en la deque")
+    class contains {
 
         @BeforeEach
         void createDeque(){
@@ -587,25 +580,23 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("Devuelve FALSE si la cola está vacía")
+        @DisplayName("cuando está vacía devuelve FALSE")
         void anEmptyDequeReturnsFalse(){
             assertFalse(deque.contains(1));
         }
 
         @Test
-        @DisplayName("Devuelve TRUE si el elemento se encuentra en la cola")
+        @DisplayName("cuando el elemento SI está contenido devuelve TRUE")
         void contains1AfterAppending1(){
             deque.append(1);
             assertTrue(deque.contains(1));
         }
 
         @Test
-        @DisplayName("Devuelve FALSE si el elemento NO se encuentra en la cola")
+        @DisplayName("cuando el elemento NO está contenido devuelve FALSE")
         void doesntContain2AfterAppending1(){
             deque.append(1);
             assertFalse(deque.contains(2));
         }
-
     }
-
 }
