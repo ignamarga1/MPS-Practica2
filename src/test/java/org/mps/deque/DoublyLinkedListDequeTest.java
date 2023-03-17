@@ -44,10 +44,6 @@ class DoublyLinkedListDequeTest {
 
     DoubleEndedQueue<Integer> deque;
 
-    private boolean isEmpty(DoubleEndedQueue d){
-        return d.first() == null && d.last() == null;
-    }
-
     @Nested
     @DisplayName("Casos de prueba de un deque recién creado")
     class NewDeque{
@@ -185,13 +181,12 @@ class DoublyLinkedListDequeTest {
             @DisplayName("El nodo añadido es el último")
             @Test
             void appendingNodeInEmptyDequeIsLastNode(){
-                int item = 1;
                 deque.append(1);
 
                 int expectedValue = 1;
                 int actualValue = deque.last();
 
-                assertEquals (1, actualValue);
+                assertEquals (expectedValue, actualValue);
             }
 
             @DisplayName("El nodo añadido es el primero")
@@ -203,7 +198,7 @@ class DoublyLinkedListDequeTest {
                 int expectedValue = 1;
                 int actualValue = deque.first();
 
-                assertEquals (1, actualValue);
+                assertEquals (expectedValue, actualValue);
             }
 
             @DisplayName("El tamaño es 1 tras la inserción")
@@ -258,7 +253,7 @@ class DoublyLinkedListDequeTest {
                 int expectedValue = prevSize + 1;
                 int actualValue = deque.size();
 
-                assertEquals(prevSize + 1, deque.size());
+                assertEquals(expectedValue, actualValue);
             }
         }
     }
@@ -278,14 +273,22 @@ class DoublyLinkedListDequeTest {
             assertThrows(DoubleEndedQueueException.class, () -> deque.deleteFirst());
         }
 
-        @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
+        @DisplayName("En un deque de tamaño 1, el primer elemento se vuelve nulo")
         @Test
-        void deletingFirstNodeFromSize1DequeResultsInEmptyDeque(){
-            int item = 1;
+        void deletingFirstNodeFromSize1DequeResultsInNullFirst(){
             deque.append(1);
 
             deque.deleteFirst();
-            assertTrue(isEmpty(deque));
+            assertNull(deque.first());
+        }
+
+        @DisplayName("En un deque de tamaño 1, el último elemento se vuelve nulo")
+        @Test
+        void deletingFirstNodeFromSize1DequeResultsInNullLast(){
+            deque.append(1);
+
+            deque.deleteFirst();
+            assertNull(deque.last());
         }
 
         @DisplayName("En un deque no vacío, se decrementa el tamaño en 1")
@@ -327,7 +330,6 @@ class DoublyLinkedListDequeTest {
         @DisplayName("En un deque de tamaño 1, el deque resultante es un deque vacío")
         @Test
         void deletingLastNodeFromSize1DequeResultsInEmptyDeque(){
-            int item = 1;
             deque.append(1);
 
             deque.deleteLast();
@@ -623,7 +625,7 @@ class DoublyLinkedListDequeTest {
 
             deque = new DoublyLinkedListDeque<>();
 
-            comparator = new Comparator<Integer>() {
+            comparator = new Comparator<>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
                     return o1 - o2;
@@ -641,16 +643,15 @@ class DoublyLinkedListDequeTest {
 
             deque.sort(comparator);
 
-            int[] obtainedValues = new int[deque.size()];
+            int[] actualValues = new int[deque.size()];
 
             for(int i = 0; i < deque.size(); i++){
-                obtainedValues[i] = deque.get(i);
+                actualValues[i] = deque.get(i);
             }
 
             int[] expectedValues = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
-            int[] actualValues = obtainedValues;
 
-            assertArrayEquals(expectedValues, obtainedValues);
+            assertArrayEquals(expectedValues, actualValues);
         }
 
         @Test
@@ -666,16 +667,15 @@ class DoublyLinkedListDequeTest {
             }
 
             deque.sort(comparator);
-            int[] obtainedValues = new int[deque.size()];
+            int[] actualValues = new int[deque.size()];
 
             for(int i = 0; i < deque.size(); i++){
-                obtainedValues[i] = deque.get(i);
+                actualValues[i] = deque.get(i);
             }
 
             int[] expectedValues = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
-            int[] actualValues = obtainedValues;
 
-            assertArrayEquals(expectedValues, obtainedValues);
+            assertArrayEquals(expectedValues, actualValues);
         }
 
         @Test
@@ -687,16 +687,15 @@ class DoublyLinkedListDequeTest {
             }
 
             deque.sort(comparator);
-            int[] obtainedValues = new int[deque.size()];
+            int[] actualValues = new int[deque.size()];
 
             for(int i = 0; i < deque.size(); i++){
-                obtainedValues[i] = deque.get(i);
+                actualValues[i] = deque.get(i);
             }
 
             int[] expectedValues = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
-            int[] actualValues = obtainedValues;
 
-            assertArrayEquals(expectedValues, obtainedValues);
+            assertArrayEquals(expectedValues, actualValues);
         }
 
         @Test
@@ -708,16 +707,15 @@ class DoublyLinkedListDequeTest {
             }
 
             deque.sort(comparator);
-            int[] obtainedValues = new int[deque.size()];
+            int[] actualValues = new int[deque.size()];
 
             for(int i = 0; i < deque.size(); i++){
-                obtainedValues[i] = deque.get(i);
+                actualValues[i] = deque.get(i);
             }
 
             int[] expectedValues = new int[] {0, 1, 2, 3, 4, 5, 6, 7};
-            int[] actualValues = obtainedValues;
 
-            assertArrayEquals(expectedValues, obtainedValues);
+            assertArrayEquals(expectedValues, actualValues);
         }
     }
 
