@@ -355,14 +355,14 @@ class DoublyLinkedListDequeTest {
 
     @Nested
     @DisplayName("Propiedades")
-    class Properties{
+    class Properties {
 
         @BeforeEach
         void createDeque(){
             deque = new DoublyLinkedListDeque<>();
         }
 
-        @DisplayName("En un deque de tamaño 1, el primer y último nodo es el mismo")
+        @DisplayName("Dado un deque de tamaño 1, el primer y último nodo es el mismo")
         @Test
         void size1DequeFirstEqualsLast(){
             int item = 1;
@@ -370,7 +370,6 @@ class DoublyLinkedListDequeTest {
             assertEquals (deque.first(), deque.last());
         }
     }
-
 
     @Nested
     @DisplayName("Obtener el valor de un nodo a partir de su índice")
@@ -530,7 +529,6 @@ class DoublyLinkedListDequeTest {
             }
 
             assertArrayEquals(sortedDequeValues, obtainedValues);
-
         }
 
         @Test
